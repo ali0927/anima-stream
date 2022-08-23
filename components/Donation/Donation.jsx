@@ -33,7 +33,6 @@ const Donation = (props) => {
           <div className="flex flex-col">
             <span>{`Steramer: ${streamer.name}`}</span>
             <span>{`Description: ${streamer.description}`}</span>
-            <span>{`Streamer's Wallet: ${streamer.wallet}`}</span>
           </div>
         </div>
         }

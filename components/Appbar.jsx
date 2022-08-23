@@ -1,17 +1,33 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
+import Link from 'next/link'
 import { shortAddr } from "../lib/utils";
 import useWallet from "../hooks/useWallet";
 import { WalletContext } from "../contexts";
 import { ethers } from "ethers";
+import { useRouter } from 'next/router';
+import { AuthContext } from "../contexts";
 
 const SignMessage = "Signin for Donation Demo";
 
 const Appbar = () => {
+  const { user, setUser, cometChat } = useContext(AuthContext);
+
   const onError = (error) => {
     alert("ERROR!")
   }
   const [provider, chain, signer, address, connectWallet] = useWallet(onError);
   const { setSigner } = useContext(WalletContext);
+  const router = useRouter();
+
+  const logout = async () => {
+    const isLogout = window.confirm("Do you want to log out ?");
+    if (isLogout) {
+      await cometChat.logout();
+      setUser(null);
+      localStorage.removeItem("auth");
+      router.push('/login');
+    }
+  };
 
   const handleConnect = async () => {
     try {
@@ -39,15 +55,29 @@ const Appbar = () => {
     }
   }
 
+  if (!user) return <React.Fragment></React.Fragment>;
+
   return (
     <div className="flex justify-between">
       <h1 className="text-3xl font-bold">Donation Demo</h1>
-      <button
-        className="p-2 border"
-        onClick={address ? () => { } : handleConnect}
-      >
-        {address ? shortAddr(address) : `Connect Wallet`}
-      </button>
+      <div className="flex space-x-4 items-center">
+        <img src={user.image} className="w-10 h-10 rounded-full" alt={user.fullname} />
+        <span><strong>{user.fullname}</strong></span>
+        <Link href={`/create-livestream`}>
+          <button className="p-2 border">
+            Create Livestream
+          </button>
+        </Link>
+        <button
+          className="p-2 border"
+          onClick={address ? () => { } : handleConnect}
+          >
+          {address ? shortAddr(address) : `Connect Wallet`}
+        </button>
+        <button className="p-2 border" onClick={logout}>
+          Logout
+        </button>
+      </div>
     </div>
   )
 }

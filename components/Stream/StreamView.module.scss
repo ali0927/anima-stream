@@ -1,0 +1,8 @@
+.stream {
+  background-image: url("../../shared/img/stream_bg.png");
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  background-size: cover;
+  @apply p-4 flex;
+}
