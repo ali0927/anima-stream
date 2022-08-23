@@ -1,0 +1,52 @@
+.donation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 5rem 2rem;
+}
+
+.donation__streamInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.donation__streamInfo__detail {
+  display: flex;
+  flex-direction: column;
+}
+.donation__dropdown {
+  margin-top: 20px;
+  position: relative;
+}
+.donation__dropdown__menu {
+  position: absolute;
+}
+.donation__button {
+  padding: 10px;
+}
+.donation__dropdown__menu__box {
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: max-content;
+  padding: 2px;
+  margin-top: 4px;
+  top: 0;
+  left: 0;
+  position: relative;
+}
+.donation__dropdown__menu__item {
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+.donation__dropdown__menu__item:hover {
+  background-color: antiquewhite;
+}
+.donation__dropdown__menu__box__child {
+  position: absolute;
+  top: 0;
+  left: 175px;
+}
+

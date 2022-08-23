@@ -53,7 +53,7 @@ const Home = () => {
 
   const setUpLivestream = (livestream) => {
     localStorage.setItem("livestream", JSON.stringify(livestream));
-    history.push("/livestream-detail");
+    history.push("/donation");
   };
 
   return (

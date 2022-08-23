@@ -12,6 +12,7 @@ import LiveStreamDetail from "./components/livestream-detail/LiveStreamDetail";
 import Loading from "./components/common/Loading";
 import Login from "./components/login/Login";
 import PrivateRoute from "./components/common/PrivateRoute";
+import Donation from "./components/donation/Donation";
 
 import { AuthContext, WalletContext } from "./contexts";
 
@@ -75,8 +76,13 @@ function App() {
             />
             <PrivateRoute
               exact
-              path="/livestream-detail"
+              path="/livestream"
               component={LiveStreamDetail}
+            />
+            <PrivateRoute
+              exact
+              path="/donation"
+              component={Donation}
             />
             <Route exact path="/login">
               <Login />
