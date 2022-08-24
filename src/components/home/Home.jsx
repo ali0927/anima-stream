@@ -19,7 +19,7 @@ const Home = () => {
 
   const livestreamsRef = useRef(firebaseService.getRef("livestreams"));
 
-  const { cometChat } = useContext(AuthContext);
+  const { cometChat, user } = useContext(AuthContext);
 
   const history = useHistory();
 
@@ -45,11 +45,21 @@ const Home = () => {
   const joinLivestream = (livestream) => async () => {
     try {
       await cometChatService.joinGroup(cometChat, livestream.id);
-      setUpLivestream(livestream);
     } catch (error) {
-      setUpLivestream(livestream);
+      console.log(error);
     }
+    setUpLivestream(livestream);
   };
+
+  const startLiveStream = (livestream) => async () => {
+    try {
+      await cometChatService.joinGroup(cometChat, livestream.id);
+    } catch (error) {
+      console.log(error);
+    }
+    localStorage.setItem("livestream", JSON.stringify(livestream));
+    history.push("/livestream");
+  }
 
   const setUpLivestream = (livestream) => {
     localStorage.setItem("livestream", JSON.stringify(livestream));
@@ -64,9 +74,13 @@ const Home = () => {
           {livestreams?.map((livestream) => (
             <div className="livestream__item" key={livestream.id}>
               <p className="livestream__name">{livestream.name}</p>
-              <p className="livestream__content">{livestream.date}</p>
+              <p className="livestream__content">Streamer: <strong>{livestream.createdBy.fullname}</strong></p>
+              <p className="livestream__content">Date: <strong>{livestream.date}</strong></p>
               <p className="livestream__content">{livestream.description}</p>
-              <button onClick={joinLivestream(livestream)}>Join</button>
+              {livestream.createdBy.id === user.id
+                ? <button className="livestream__start" onClick={startLiveStream(livestream)}>Start</button>
+                : <button onClick={joinLivestream(livestream)}>Join</button>
+              }
             </div>
           ))}
         </div>

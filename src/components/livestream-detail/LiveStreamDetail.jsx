@@ -8,8 +8,9 @@ import { AuthContext } from "../../contexts";
 
 const LiveStreamDetail = () => {
   const [livestream, setLivestream] = useState(null);
+  const [activePublic, setAcivePublic] = useState(true);
 
-  const { cometChat } = useContext(AuthContext);
+  const { cometChat, user } = useContext(AuthContext);
 
   const history = useHistory();
 
@@ -28,14 +29,29 @@ const LiveStreamDetail = () => {
 
   const startDirectCall = () => {
     if (cometChat && livestream) {
+      const streamerId = livestream.createdBy.id;
       const sessionID = livestream.id;
-      const audioOnly = false;
       const defaultLayout = true;
+      const audioOnly = false;
+      const screenShare = streamerId === user.id ? true: true;
+      const muteAudio = streamerId === user.id ? true: true;
+      const pauseVideo = streamerId === user.id ? true: true;
+      const endCall = streamerId === user.id ? true: true;
+      const startAudioMuted = true;
+      const startVideoMuted = true;
+
       const callSettings = new cometChat.CallSettingsBuilder()
-        .enableDefaultLayout(defaultLayout)
         .setSessionID(sessionID)
+        .enableDefaultLayout(defaultLayout)
+        .showEndCallButton(endCall)
         .setIsAudioOnlyCall(audioOnly)
+        .showMuteAudioButton(muteAudio)
+        .showPauseVideoButton(pauseVideo)
+        .showScreenShareButton(screenShare)
+        .startWithAudioMuted(startAudioMuted)
+        .startWithVideoMuted(startVideoMuted)
         .build();
+
       cometChat.startCall(
         callSettings,
         document.getElementById("call__screen"),
@@ -65,8 +81,26 @@ const LiveStreamDetail = () => {
         <div className="livestream__left">
           <div id="call__screen"></div>
         </div>
-        <div className="livestream__right">
-          <CometChatMessages chatWithGroup={livestream.id} />
+        <div className="livestrem__right">
+          <div className="livestream__tabs">
+            <button 
+              className={activePublic ? 'active': ''}
+            >
+              Public
+            </button>
+            <button
+              className={activePublic ? '': 'active'}
+            >
+              {livestream.createdBy.fullname}
+            </button>
+
+          </div>
+          <div className="livestream__chat">
+            <CometChatMessages chatWithGroup={livestream.id} />
+          </div>
+          {/* <div className="livestream__right">
+            <CometChatMessages chatWithGroup={livestream.id} />
+          </div> */}
         </div>
       </div>
     </React.Fragment>
