@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useWallet from "../../hooks/useWallet";
 import { AuthContext, WalletContext } from "../../contexts";
@@ -10,25 +10,25 @@ const SignMessage = "Signin for Donation Demo";
 const Header = () => {
   const { user, setUser, cometChat } = useContext(AuthContext);
   const onError = (error) => {
-    alert("ERROR!")
+    alert(error)
   }
-  const [provider, chain, signer, address, connectWallet] = useWallet(onError);
-  const { setSigner } = useContext(WalletContext);
+  const [ connectWallet ] = useWallet(onError);
+  const { setSigner, signer, address, setAddress } = useContext(WalletContext);
 
   const history = useHistory();
 
   const logout = async () => {
     const isLogout = window.confirm("Do you want to log out ?");
     if (isLogout) {
-      await cometChat.logout();
       removeAuthedInfo();
+      await cometChat.logout();
       goRoute("/login")();
     }
   };
 
   const removeAuthedInfo = () => {
-    setUser(null);
     localStorage.removeItem("auth");
+    setUser(null);
   };
 
   const goRoute = (path) => () => {
@@ -38,6 +38,10 @@ const Header = () => {
   const handleConnect = async () => {
     try {
       await connectWallet();
+    } catch (err) {
+      console.log(err)
+    }
+    try {
       if (!window.ethereum)
         throw new Error("No crypto wallet found. Please install it.");
 
@@ -46,8 +50,10 @@ const Header = () => {
       const signer = provider.getSigner();
       const signature = await signer.signMessage(SignMessage);
       const address = await signer.getAddress();
+      setAddress(address);
       const signerAddr = await ethers.utils.verifyMessage(SignMessage, signature);
       setSigner(signer);
+      setAddress(address)
       alert(`Successful Signin by ${signerAddr}`);
 
       return {
@@ -66,10 +72,10 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header__left">
-        <div className="header__option" onClick={goRoute("/")}>
+        <div className="header__option" onClick={goRoute("/home")}>
           Donation Demo
         </div>
-        <img src={user.image} alt={user.fullname} />
+        <img src={user.avatar} alt={user.fullname} />
         <span>{user.fullname}</span>
       </div>
       <div className="header__right">
@@ -81,6 +87,12 @@ const Header = () => {
           onClick={address ? () => { } : handleConnect}
           >
           {address ? shortAddr(address) : `Connect Wallet`}
+        </div>
+        <div className="header__option">
+          {`$${user.balance}`}
+        </div>
+        <div className="header__option" onClick={goRoute("/charge")}>
+          Charge
         </div>
         <div className="header__option" onClick={logout}>
           Logout

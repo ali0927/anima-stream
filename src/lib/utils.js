@@ -1,3 +1,4 @@
 export const shortAddr = (addr) => {
-  return `${addr.toString().slice(0, 5)}...${addr.toString().slice(-5)}`;
+  if (!addr) return null;
+  return `${addr.toString().slice(0, 4)}...${addr.toString().slice(-4)}`;
 }

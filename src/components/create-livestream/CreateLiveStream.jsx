@@ -91,6 +91,7 @@ const CreateLiveStream = () => {
         name: livestreamName,
         date: livestreamDate,
         description: livestreamDescription,
+        balance: 0,
         createdBy: user,
       },
     });

@@ -5,6 +5,7 @@ import { CometChatMessages } from "../../cometchat-pro-react-ui-kit/CometChatWor
 import LiveStreamHeader from "../livestream-header/LiveStreamHeader";
 
 import { AuthContext } from "../../contexts";
+import { CometChat } from "@cometchat-pro/chat";
 
 const LiveStreamDetail = () => {
   const [livestream, setLivestream] = useState(null);
@@ -33,12 +34,33 @@ const LiveStreamDetail = () => {
       const sessionID = livestream.id;
       const defaultLayout = true;
       const audioOnly = false;
-      const screenShare = streamerId === user.id ? true: true;
-      const muteAudio = streamerId === user.id ? true: true;
-      const pauseVideo = streamerId === user.id ? true: true;
-      const endCall = streamerId === user.id ? true: true;
+      const screenShare = streamerId === user.id ? true: false;
+      const muteAudio = streamerId === user.id ? true: false;
+      const pauseVideo = streamerId === user.id ? true: false;
+      const endCall = streamerId === user.id ? true: false;
       const startAudioMuted = true;
       const startVideoMuted = true;
+      const mode = CometChat.CALL_MODE.SPOTLIGHT;
+
+      let CSS = `
+        .local-video-container { 
+          display: none;
+        }
+        #menu-list-grow > li:first-child {
+          display: none;
+        }
+      `
+
+      if (streamerId === user.id) {
+
+      }
+      else {
+        CSS += `
+          .bottom-buttons-other-options { 
+            display: none;
+          }
+        `
+      }
 
       const callSettings = new cometChat.CallSettingsBuilder()
         .setSessionID(sessionID)
@@ -50,18 +72,26 @@ const LiveStreamDetail = () => {
         .showScreenShareButton(screenShare)
         .startWithAudioMuted(startAudioMuted)
         .startWithVideoMuted(startVideoMuted)
+        .setMode(mode)
+        .setCustomCSS(CSS)
         .build();
 
       cometChat.startCall(
         callSettings,
         document.getElementById("call__screen"),
         new cometChat.OngoingCallListener({
-          onUserListUpdated: (userList) => {},
+          onUserListUpdated: (userList) => {
+            const idx = userList.findIndex(member => member.uid === streamerId.toLowerCase());
+            if (idx === -1) {
+              alert('LiveStream is not started yet!');
+              history.push("/home");
+            }
+          },
           onCallEnded: (call) => {
-            history.push("/");
+            history.push("/home");
           },
           onError: (error) => {
-            history.push("/");
+            history.push("/home");
           },
           onMediaDeviceListUpdated: (deviceList) => {},
           onUserMuted: (userMuted, userMutedBy) => {},
@@ -91,7 +121,7 @@ const LiveStreamDetail = () => {
             <button
               className={activePublic ? '': 'active'}
             >
-              {livestream.createdBy.fullname}
+              Private
             </button>
 
           </div>

@@ -5,7 +5,7 @@ const LiveStreamHeader = ({ livestream }) => {
   const history = useHistory();
 
   const stopLivestream = () => {
-    history.push("/");
+    history.push("/home");
   };
 
   return (

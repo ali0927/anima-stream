@@ -444,13 +444,21 @@ input {
 }
 
 .create-livestream__content {
-  width: 50%;
+  width: 90%;
+  max-width: 400px;
 }
 
 .create-livestream__title {
   font-size: 1.25rem;
   font-weight: bold;
   padding-bottom: 1rem;
+}
+
+.create-livestream__info {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 0.9375rem;
 }
 
 .create-livestream__form input {
@@ -502,6 +510,7 @@ input {
 .home > div {
   display: flex;
   flex-flow: wrap;
+  margin: auto;
 }
 
 .livestream__item {

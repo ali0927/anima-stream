@@ -1,32 +1,58 @@
 import React, { useState, useContext } from "react";
 import { ethers } from "ethers";
-import { WalletContext } from "../../contexts";
+import { AuthContext } from "../../contexts";
 import Header from "../common/Header";
 import { useHistory } from "react-router-dom";
+import * as firebaseService from "../../services/firebase";
 import "./Donation.css";
 
 const Donation = () => {
   const livestream = JSON.parse(localStorage.getItem("livestream"));
   const [showDonation, setShowDonation] = useState(false);
-  const [openCallToAction, setOpenCallToAction] = useState(false);
-  const { signer } = useContext(WalletContext);
-  const onError = (error) => {
-    alert("ERROR!")
-  }
-
+  const [openClothes, setOpenClothes] = useState(false);
+  const [openLovense, setOpenLovense] = useState(false);
+  const { user, setUser } = useContext(AuthContext);
   const history = useHistory();
 
   const handleTransaction = async (amount) => {
     try {
-      const tx = {
-        to: "0x0902CB364E49101F4ab5D4fFDE5035973e728D3F",
-        value: ethers.utils.parseEther(amount.toString())
+      if (user.balance < amount) {
+        alert("Your balance is not enough!");
       }
-      await signer.sendTransaction(tx);
+      else {
+        await firebaseService.update({
+          key: "users",
+          id: user.id,
+          payload: {
+            balance: user.balance - amount
+          },
+        });
+        await firebaseService.update({
+          key: "livestreams",
+          id: livestream.id,
+          payload: {
+            balance: livestream.balance + amount
+          },
+        });
+        livestream.balance = livestream.balance + amount;
+        setUser({ ...user, balance: user.balance - amount });
+        localStorage.setItem("livestream", JSON.stringify({ ...livestream, balance: livestream.balance + amount}));
+
+        history.push("/livestream");
+      }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
-    history.push("/livestream");
+  }
+
+  const changeOpenLovense = () => {
+    setOpenLovense(!openLovense);
+    setOpenClothes(false);
+  }
+
+  const changeOpenClothes = () => {
+    setOpenClothes(!openClothes);
+    setOpenLovense(false);
   }
 
   return (
@@ -43,7 +69,7 @@ const Donation = () => {
         </div>
         }
         <div className="donation__dropdown">
-          {signer &&
+          {user &&
             <div className="donation__dropdown">
               <button className="donation__button" onClick={() => setShowDonation(!showDonation)}>Donation</button>
               {showDonation &&
@@ -51,26 +77,42 @@ const Donation = () => {
                   <div className="donation__dropdown__menu__box">
                     <div 
                       className="donation__dropdown__menu__item" 
-                      onClick={() => setOpenCallToAction(!openCallToAction)}
+                      onClick={changeOpenLovense}
                     >
-                      <span>call-to-action</span>
+                      <span>Lovense </span>
                       <span>{`>`}</span>
                     </div>
-                    <div className="donation__dropdown__menu__item">iot</div>
-                    <div className="donation__dropdown__menu__item">{`AR(1st sprint manually)`}</div>
+                    <div 
+                      className="donation__dropdown__menu__item" 
+                      onClick={changeOpenClothes}
+                    >
+                      <span>Clothes </span>
+                      <span>{`>`}</span>
+                    </div>
                   </div>
-                  {openCallToAction &&
+                  {openLovense &&
                     <div className="donation__dropdown__menu__box donation__dropdown__menu__box__child">
-                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(0.1)}>{`Action1 (10 tokens)`}</div>
-                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(1)}>{`Action2 (100 tokens)`}</div>
-                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(1.5)}>{`Action3 (150 tokens)`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(1)}>{`1 second, 1 coin`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(10)}>{`3 seconds, 10 coin`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(100)}>{`5 seconds, 100 coins`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(500)}>{`15 seconds, 500 coins`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(1000)}>{`30 seconds, 1000 coins`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(5000)}>{`Death from orgasm, 5000 coins`}</div>
+                    </div>
+                  }
+                  {openClothes &&
+                    <div className="donation__dropdown__menu__box donation__dropdown__menu__box__child">
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(500)}>{`Change clothes skin 50, 500 coins`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(190)}>{`Remove clothes 10 seconds, 190 coins`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(290)}>{`Remove clothes 30 seconds, 290 coins`}</div>
+                      <div className="donation__dropdown__menu__item" onClick={() => handleTransaction(490)}>{`Remove clothes 60 seconds, 490 coins`}</div>
                     </div>
                   }
                 </div>
               }
             </div>
           }
-          {!signer &&
+          {!user &&
             <label className="text-xl text-red-500">
               Connect your wallet to participate in Donation
             </label>

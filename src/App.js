@@ -13,6 +13,8 @@ import Loading from "./components/common/Loading";
 import Login from "./components/login/Login";
 import PrivateRoute from "./components/common/PrivateRoute";
 import Donation from "./components/donation/Donation";
+import WalletConnect from "./components/common/WalletConnect";
+import Charge from "./components/charge/Charge";
 
 import { AuthContext, WalletContext } from "./contexts";
 
@@ -20,12 +22,13 @@ import "./index.css";
 
 function App() {
   const [signer, setSigner] = useState();
+  const [address, setAddress] = useState();
   const [user, setUser] = useState(null);
   const [cometChat, setCometChat] = useState(null);
 
   const wallet = useMemo(
-    () => ({ signer, setSigner }), 
-    [signer]
+    () => ({ signer, setSigner, address, setAddress }),
+    [signer, address]
   );
 
   const auth = {
@@ -68,24 +71,20 @@ function App() {
       <WalletContext.Provider value={wallet}>
         <Router>
           <Switch>
-            <PrivateRoute exact path="/" component={Home} />
-            <PrivateRoute
+            <Route exact path="/">
+              <WalletConnect />
+            </Route>
+            <Route exact path="/home" component={Home} />
+            <Route
               exact
               path="/create-livestream"
               component={CreateLiveStream}
             />
-            <PrivateRoute
-              exact
-              path="/livestream"
-              component={LiveStreamDetail}
-            />
-            <PrivateRoute
-              exact
-              path="/donation"
-              component={Donation}
-            />
+            <Route exact path="/livestream" component={LiveStreamDetail} />
+            <Route exact path="/donation" component={Donation} />
+            <Route exact path="/charge" component={Charge} />
             <Route exact path="/login">
-              <Login />
+              <WalletConnect />
             </Route>
             <Route exact path="*">
               <Redirect to="/" />
