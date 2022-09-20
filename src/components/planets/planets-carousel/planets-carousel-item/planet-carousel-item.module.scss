@@ -1,0 +1,87 @@
+.planet {
+  width: 55.5rem;
+  height: 55.5rem;
+  position: relative;
+
+  .controls-overlay {
+    position: absolute;
+    top: 50%;
+    height: 50%;
+    left: 0;
+    z-index: 1;
+    .btn {
+      border-radius: 6.25rem;
+
+      &.arrow {
+        border-radius: 50%;
+        height: 6rem;
+        width: 6rem;
+        padding: 0;
+        margin: 0;
+        background: linear-gradient(103.62deg, rgba(255, 255, 255, 0.24) 4.66%, rgba(255, 255, 255, 0) 107.65%);
+        filter: drop-shadow(0px 0px 4px rgba(107, 232, 251, 0.1));
+        backdrop-filter: blur(12.5px);
+
+      }
+    }
+
+    .explore-popup {
+      background: linear-gradient(103.62deg, rgba(255, 255, 255, 0.24) 4.66%, rgba(255, 255, 255, 0) 107.65%);
+      backdrop-filter: blur(12.5px);
+      border-radius: 1.25rem;
+      padding: 1.25rem;
+      height: 12.25rem;
+      width: 30rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+
+
+      .description {
+        font-size: 1.125rem;
+        color: #FFFFFF;
+      }
+
+      .btn {
+        background-color: #CB6DB2;
+        font-weight: 700;
+        font-size: 1.125rem;
+      }
+
+      will-change: transform;
+      transform:  scale(1);
+      transition: transform 30s;
+    }
+
+    opacity: 0;
+    transform: scale(.9);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    will-change: opacity, transform;
+  }
+
+
+
+  &:hover {
+
+    .controls-overlay {
+      opacity: 1;
+      transform: scale(1);
+
+      .explore-popup, .btn.arrow {
+        transform: scale(1);
+      }
+    }
+
+  }
+
+
+  &.inactive {
+    position: relative;
+    top: 25rem;
+
+    .controls-overlay {
+      display: none;
+    }
+
+  }
+
+
+}

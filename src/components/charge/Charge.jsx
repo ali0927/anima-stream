@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ethers } from "ethers";

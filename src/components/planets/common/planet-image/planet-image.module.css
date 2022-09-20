@@ -1,0 +1,110 @@
+.planet-image .image-wrapper {
+  position: relative;
+}
+.planet-image .image-wrapper .image {
+  width: 40.625rem;
+  height: 40.625rem;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+.planet-image .image-wrapper .orbit {
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.planet-image .image-wrapper .orbit.circle {
+  top: -9%;
+  left: -9%;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+}
+.planet-image .image-wrapper .orbit.horizontal {
+  top: -9%;
+  left: -8.5%;
+  width: 119%;
+  height: 119%;
+  border-radius: 50%;
+  transform: rotateX(75deg) translateY(23%);
+  border-top: none;
+}
+.planet-image .image-wrapper .orbit.horizontal.central-part {
+  border-left: none;
+  border-right: none;
+  z-index: 2;
+}
+.planet-image .image-wrapper .orbit.horizontal.left-part {
+  border-right: none;
+  border-bottom: none;
+  z-index: -1;
+}
+.planet-image .image-wrapper .orbit.horizontal.right-part {
+  border-left: none;
+  border-bottom: none;
+  z-index: -1;
+}
+.planet-image .image-wrapper .orbital-button-container {
+  position: absolute;
+  z-index: 2;
+}
+.planet-image .image-wrapper .orbital-button-container .orbital-button {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  border: 0.125rem solid rgb(203, 109, 178);
+  box-shadow: 0px 0px 8px 0px rgba(239, 207, 250, 0.5);
+  background: rgba(203, 109, 178, 0.5);
+  backdrop-filter: blur(5px);
+}
+.planet-image .image-wrapper .orbital-button-container .orbital-button .orbital-button-icon {
+  height: 2rem;
+  width: 2rem;
+}
+.planet-image .image-wrapper .orbital-button-container .orbital-button-text {
+  margin-top: 0.5rem;
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  will-change: opacity;
+}
+.planet-image .image-wrapper .orbital-button-container:hover .orbital-button-text {
+  opacity: 1;
+}
+.planet-image .image-wrapper .orbital-button-container:nth-of-type(1) {
+  top: 20%;
+  right: -12%;
+}
+.planet-image .image-wrapper .orbital-button-container:nth-of-type(2) {
+  top: 62%;
+  left: 1%;
+}
+.planet-image .title {
+  text-transform: uppercase;
+  position: relative;
+  top: 5rem;
+  font-family: "Nunito", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12rem;
+  line-height: 12rem;
+  color: #FFFFFF;
+}
+.planet-image.rotating .image {
+  animation: rotate 480s linear infinite;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/*# sourceMappingURL=planet-image.module.css.map */

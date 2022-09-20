@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { ethers } from "ethers";
 import { useEffect, useState, useContext } from "react";
 import WalletConnectProvider from "@walletconnect/web3-provider";

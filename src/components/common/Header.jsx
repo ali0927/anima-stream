@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useWallet from "../../hooks/useWallet";

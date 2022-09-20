@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 
@@ -34,10 +36,10 @@ const LiveStreamDetail = () => {
       const sessionID = livestream.id;
       const defaultLayout = true;
       const audioOnly = false;
-      const screenShare = streamerId === user.id ? true: false;
-      const muteAudio = streamerId === user.id ? true: false;
-      const pauseVideo = streamerId === user.id ? true: false;
-      const endCall = streamerId === user.id ? true: false;
+      const screenShare = streamerId === user.id ? true : false;
+      const muteAudio = streamerId === user.id ? true : false;
+      const pauseVideo = streamerId === user.id ? true : false;
+      const endCall = streamerId === user.id ? true : false;
       const startAudioMuted = true;
       const startVideoMuted = true;
       const mode = CometChat.CALL_MODE.SPOTLIGHT;
@@ -49,17 +51,15 @@ const LiveStreamDetail = () => {
         #menu-list-grow > li:first-child {
           display: none;
         }
-      `
+      `;
 
       if (streamerId === user.id) {
-
-      }
-      else {
+      } else {
         CSS += `
           .bottom-buttons-other-options { 
             display: none;
           }
-        `
+        `;
       }
 
       const callSettings = new cometChat.CallSettingsBuilder()
@@ -81,9 +81,11 @@ const LiveStreamDetail = () => {
         document.getElementById("call__screen"),
         new cometChat.OngoingCallListener({
           onUserListUpdated: (userList) => {
-            const idx = userList.findIndex(member => member.uid === streamerId.toLowerCase());
+            const idx = userList.findIndex(
+              (member) => member.uid === streamerId.toLowerCase()
+            );
             if (idx === -1) {
-              alert('LiveStream is not started yet!');
+              alert("LiveStream is not started yet!");
               history.push("/home");
             }
           },
@@ -113,17 +115,8 @@ const LiveStreamDetail = () => {
         </div>
         <div className="livestrem__right">
           <div className="livestream__tabs">
-            <button 
-              className={activePublic ? 'active': ''}
-            >
-              Public
-            </button>
-            <button
-              className={activePublic ? '': 'active'}
-            >
-              Private
-            </button>
-
+            <button className={activePublic ? "active" : ""}>Public</button>
+            <button className={activePublic ? "" : "active"}>Private</button>
           </div>
           <div className="livestream__chat">
             <CometChatMessages chatWithGroup={livestream.id} />

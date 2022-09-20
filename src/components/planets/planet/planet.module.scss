@@ -1,0 +1,55 @@
+.planet {
+
+
+
+  .content-container {
+    flex-shrink: 0;
+    width: 42.125rem;
+    min-width: 42.125rem;
+    height: 54.5rem;
+    margin-left: 4rem;
+    margin-top: 6rem;
+    padding: 1.25rem;
+    border-radius: 1.25rem;
+    backdrop-filter: blur(12.5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(103.62deg, rgba(255, 255, 255, 0.06) 4.66%, rgba(255, 255, 255, 0) 107.65%),
+    linear-gradient(219.44deg, rgba(255, 255, 255, 0.08) 24%, rgba(255, 255, 255, 0) 78.49%);
+
+
+    .btn-back {
+      border-radius: 50%;
+      height: 2.75rem;
+      width: 2.75rem;
+      position: relative;
+      top: -0.075rem;
+      background-color: rgba(184, 100, 162, 0.3);
+      background-image: url("../../../assets/icons/arrows/left-rose.svg");
+      background-size: 2rem;
+      background-repeat: no-repeat;
+      background-position: center center;
+      margin-right: 1rem;
+    }
+
+
+
+    .title {
+      font-family: 'Nunito', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 2.75rem;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .btn-join {
+      background: #CB6DB2;
+      box-shadow: 0px 0px 6px rgba(240, 158, 214, 0.3);
+      border-radius: 6.25rem;
+      font-size: 1.125rem;
+    }
+
+  }
+
+
+}

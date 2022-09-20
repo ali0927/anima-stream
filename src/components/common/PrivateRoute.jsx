@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { WalletContext } from "../../contexts";

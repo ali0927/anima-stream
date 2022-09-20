@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useContext } from "react";
 import { ethers } from "ethers";
 import { AuthContext } from "../../contexts";
@@ -5,6 +7,7 @@ import Header from "../common/Header";
 import { useHistory } from "react-router-dom";
 import * as firebaseService from "../../services/firebase";
 import "./Donation.css";
+
 
 const Donation = () => {
   const livestream = JSON.parse(localStorage.getItem("livestream"));
@@ -75,15 +78,15 @@ const Donation = () => {
               {showDonation &&
                 <div className="donation__dropdown__menu">
                   <div className="donation__dropdown__menu__box">
-                    <div 
-                      className="donation__dropdown__menu__item" 
+                    <div
+                      className="donation__dropdown__menu__item"
                       onClick={changeOpenLovense}
                     >
                       <span>Lovense </span>
                       <span>{`>`}</span>
                     </div>
-                    <div 
-                      className="donation__dropdown__menu__item" 
+                    <div
+                      className="donation__dropdown__menu__item"
                       onClick={changeOpenClothes}
                     >
                       <span>Clothes </span>
