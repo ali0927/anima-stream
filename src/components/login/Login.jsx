@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useEffect, useRef, useContext } from "react";
 import validator from "validator";
 import { useHistory } from "react-router-dom";

@@ -1,11 +1,12 @@
-export const alert = message => {
+export const alert = (message) => {
   window.alert(message);
 };
 
 export const showLoading = () => {
   const loading = document.getElementById("loading");
   loading.classList.remove("hidden");
-  loading.classList.add('shown');
+
+  loading.classList.add("shown");
 };
 
 export const hideLoading = () => {

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useRef, useContext } from "react";
 import validator from "validator";
 import { v4 as uuidv4 } from "uuid";

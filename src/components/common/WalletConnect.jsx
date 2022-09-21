@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { useEffect, useContext } from "react";
 import useWallet from "../../hooks/useWallet";
 import { AuthContext, WalletContext } from "../../contexts";
@@ -60,7 +62,7 @@ const WalletConnect = () => {
           Connect Wallet
         </button>
     </div>
- )   
+ )
 }
 
 export default WalletConnect;

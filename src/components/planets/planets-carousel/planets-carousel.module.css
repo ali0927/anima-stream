@@ -1,0 +1,13 @@
+.planets-carousel {
+  position: relative;
+  padding-top: 5rem;
+}
+.planets-carousel .orbit-image {
+  position: fixed;
+  top: 65%;
+}
+.planets-carousel .planets-carousel {
+  width: 150vw;
+}
+
+/*# sourceMappingURL=planets-carousel.module.css.map */

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router";
 
@@ -100,10 +102,10 @@ const LiveStreamDetail = () => {
       const sessionID = livestream.id;
       const defaultLayout = true;
       const audioOnly = false;
-      const screenShare = streamerId === user.id ? true: false;
-      const muteAudio = streamerId === user.id ? true: false;
-      const pauseVideo = streamerId === user.id ? true: false;
-      const endCall = streamerId === user.id ? true: false;
+      const screenShare = streamerId === user.id ? true : false;
+      const muteAudio = streamerId === user.id ? true : false;
+      const pauseVideo = streamerId === user.id ? true : false;
+      const endCall = streamerId === user.id ? true : false;
       const startAudioMuted = true;
       const startVideoMuted = true;
       const mode = CometChat.CALL_MODE.SPOTLIGHT;
@@ -129,14 +131,12 @@ const LiveStreamDetail = () => {
         }
       `
       if (streamerId === user.id) {
-
-      }
-      else {
+      } else {
         CSS += `
           .bottom-buttons-other-options { 
             display: none;
           }
-        `
+        `;
       }
 
       const callSettings = new cometChat.CallSettingsBuilder()

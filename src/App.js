@@ -15,8 +15,12 @@ import Donation from "./components/donation/Donation";
 import WalletConnect from "./components/common/WalletConnect";
 import Charge from "./components/charge/Charge";
 import { AuthContext, WalletContext } from "./contexts";
+import { PlanetsCarousel } from "./components/planets/planets-carousel/planets-carousel";
+import { Planet } from "./components/planets/planet/planet";
+
 import "@fontsource/inter";
-import "./index.css";
+import "./index.scss";
+import "./global.scss";
 
 function App() {
   const [signer, setSigner] = useState();
@@ -81,6 +85,9 @@ function App() {
             <Route exact path="/livestream" component={LiveStreamDetail} />
             <Route exact path="/donation" component={Donation} />
             <Route exact path="/charge" component={Charge} />
+            <Route exact path="/planets" component={PlanetsCarousel} />
+            <Route path={"/planets/:title"} component={Planet} />
+
             <Route exact path="/login">
               <WalletConnect />
             </Route>
