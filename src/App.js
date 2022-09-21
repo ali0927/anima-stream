@@ -5,7 +5,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-
 import CreateLiveStream from "./components/create-livestream/CreateLiveStream";
 import Home from "./components/home/Home";
 import LiveStreamDetail from "./components/livestream-detail/LiveStreamDetail";
@@ -15,9 +14,8 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import Donation from "./components/donation/Donation";
 import WalletConnect from "./components/common/WalletConnect";
 import Charge from "./components/charge/Charge";
-
 import { AuthContext, WalletContext } from "./contexts";
-
+import "@fontsource/inter";
 import "./index.css";
 
 function App() {

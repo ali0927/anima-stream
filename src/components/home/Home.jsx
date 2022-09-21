@@ -48,7 +48,8 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-    setUpLivestream(livestream);
+    localStorage.setItem("livestream", JSON.stringify(livestream));
+    history.push("/livestream");
   };
 
   const startLiveStream = (livestream) => async () => {
@@ -60,11 +61,6 @@ const Home = () => {
     localStorage.setItem("livestream", JSON.stringify(livestream));
     history.push("/livestream");
   }
-
-  const setUpLivestream = (livestream) => {
-    localStorage.setItem("livestream", JSON.stringify(livestream));
-    history.push("/donation");
-  };
 
   return (
     <React.Fragment>

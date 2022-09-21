@@ -20,9 +20,9 @@ const Header = () => {
   const logout = async () => {
     const isLogout = window.confirm("Do you want to log out ?");
     if (isLogout) {
+      history.push("/");
       removeAuthedInfo();
       await cometChat.logout();
-      goRoute("/login")();
     }
   };
 
