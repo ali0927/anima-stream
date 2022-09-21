@@ -3,3 +3,9 @@ node_modules
 .idea
 .DS_Store
 .DS_store
+
+*.css
+*.css.map
+
+dist
+.vs_code

@@ -1,3 +1,5 @@
+/* eslint-disable */ // plz fix linting and remove this comment
+
 import "./LiveStreamDetail.css";
 
 const ToolBarMenu = ({ items, show, onClose }) => {
@@ -9,10 +11,10 @@ const ToolBarMenu = ({ items, show, onClose }) => {
     <>
       {show &&
         <div className="livestream__menu">
-          {items.map(item => 
+          {items.map(item =>
             <>
               <div className="livestream__menu__title">{item.title}</div>
-              {item.options.map(option => 
+              {item.options.map(option =>
                 <div className="livestream__menu__option" onClick={handleOption}>
                   {option.text}
                 </div>
