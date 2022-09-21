@@ -45,7 +45,7 @@ export const upload = async ({ key, id, payload, entity, callback }) => {
   uploadTask.on(
     "state_changed",
     null,
-    (error) => {},
+    () => {},
     () => {
       storage
         .ref(key)

@@ -4,6 +4,7 @@ import styles from "./about.module.scss";
 import { MarketplaceWidget } from "./marketplace-widget/marketplace-widget";
 
 export const About = ({ title }: { title: string }) => {
+  console.log("Title:", title);
   return (
     <div
       className={classNames(

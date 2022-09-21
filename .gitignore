@@ -3,6 +3,7 @@ node_modules
 .idea
 .DS_Store
 .DS_store
+build
 
 *.css
 *.css.map

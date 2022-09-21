@@ -9,8 +9,6 @@ import CreateLiveStream from "./components/create-livestream/CreateLiveStream";
 import Home from "./components/home/Home";
 import LiveStreamDetail from "./components/livestream-detail/LiveStreamDetail";
 import Loading from "./components/common/Loading";
-import Login from "./components/login/Login";
-import PrivateRoute from "./components/common/PrivateRoute";
 import Donation from "./components/donation/Donation";
 import WalletConnect from "./components/common/WalletConnect";
 import Charge from "./components/charge/Charge";
@@ -59,7 +57,7 @@ function App() {
       () => {
         setCometChat(() => CometChat);
       },
-      (error) => {}
+      () => {}
     );
   };
 

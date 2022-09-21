@@ -21,7 +21,7 @@ export const PlanetsCarousel = () => {
     },
   ];
 
-  const [activePlanet, setActivePlanet] = React.useState(planets[1].title);
+  // const [activePlanet, setActivePlanet] = React.useState(planets[1].title);
 
   return (
     <Layout>
@@ -48,7 +48,7 @@ export const PlanetsCarousel = () => {
               <PlanetCarouselItem
                 title={planet.title}
                 key={planet.title}
-                isActive={planet.title === activePlanet}
+                isActive={planet.title === planets[1].title}
               />
             ))}
         </div>
