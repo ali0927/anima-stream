@@ -8,7 +8,7 @@ import LiveStreamHeader from "../livestream-header/LiveStreamHeader";
 import ToolBarMenu from "./ToolBarMenu";
 import { AuthContext } from "../../contexts";
 import { CometChat } from "@cometchat-pro/chat";
-import "./LiveStreamDetail.css";
+import "./LiveStreamDetail.scss";
 
 const PurchasingMenu = [
   {
@@ -188,8 +188,8 @@ const LiveStreamDetail = () => {
         <div className="livestream__left">
           <div className="livestream__control">
             <div style={{position: "relative"}}>
-              <button 
-                className="livestream__btn__purchasing" 
+              <button
+                className="livestream__btn__purchasing"
                 onClick={() => {
                   setShowPurchasing(!showPurchasing)
                   setShowLovence(false)
@@ -198,12 +198,12 @@ const LiveStreamDetail = () => {
               <ToolBarMenu
                 items={PurchasingMenu}
                 show={showPurchasing}
-                onClose={() => setShowPurchasing(false)} 
+                onClose={() => setShowPurchasing(false)}
                 />
             </div>
             <div style={{position: "relative"}}>
-              <button 
-                className="livestream__btn__lovence" 
+              <button
+                className="livestream__btn__lovence"
                 onClick={() => {
                   setShowLovence(!showLovence)
                   setShowPurchasing(false)
@@ -212,12 +212,12 @@ const LiveStreamDetail = () => {
               <ToolBarMenu
                 items={LovenceMenu}
                 show={showLovence}
-                onClose={() => setShowLovence(false)} 
+                onClose={() => setShowLovence(false)}
                 />
             </div>
             <button className="livestream__btn__emotic"></button>
           </div>
-          <button 
+          <button
             className="livestream__backBtn"
             onClick={() => history.push("/home")}
           />
@@ -233,7 +233,7 @@ const LiveStreamDetail = () => {
         <div style={{padding: "5px 0 0 15px"}}>
           <div className="livestrem__right">
             <div className="livestream__tabs">
-              <button 
+              <button
                 className={activePublic ? 'active': ''}
               >
                 GENERAL CHAT

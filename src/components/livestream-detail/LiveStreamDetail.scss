@@ -1,0 +1,207 @@
+#call__screen {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  border-radius: 20px;
+  overflow: hidden;
+}
+#call__screen > iframe {
+ border: none;
+}
+.chat__header {
+  display: none !important;
+}
+.livestream {
+  height: 100vh;
+  background: #120320;
+}
+.livestream__container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  height: 100%;
+  padding: 70px 20px 20px 20px;
+}
+.livestream__left {
+  position: relative;
+}
+.livestrem__right {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  background: linear-gradient(103.62deg, rgba(255, 255, 255, 0.24) 4.66%, rgba(255, 255, 255, 0) 107.65%);
+  /* background: rgba(255, 255, 255, 0.1); */
+  backdrop-filter: blur(12.5px);
+}
+.livestream__tabs {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: calc(100% - 40px);
+  height: 50px;
+}
+.livestream__tabs button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  transition: 0.3s;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  color: gray;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+}
+.livestream__tabs button.active {
+  border-bottom: 1px solid  #F4AEDE;
+  color: white;
+}
+.livestream__btn__purchasing {
+  background-image: url(../../assets/image/btn_lovence.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 80px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.livestream__btn__lovence {
+  background-image: url(../../assets/image/btn_volumn.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 80px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.livestream__btn__emotic {
+  background-image: url(../../assets/image/btn_emotic.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.livestream__backBtn {
+  background-image: url(../../assets/image/btn_back.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  z-index: 10;
+}
+.livestream__chat {
+  height: 100%;
+  padding-top: 50px;
+}
+/* .livestream__chat * {
+  background-color: transparent !important;
+  color: white;
+  border: none;
+} */
+.livestream .main__chat {
+  background-color: transparent;
+  border: none;
+}
+.livestream .chat__header,
+.livestream .chat__list,
+.livestream .chat__composer,
+.livestream .chat__composer .input__inner {
+  background-color: transparent;
+  color: white;
+}
+.livestream .chat__composer .input__inner {
+  min-height: 40px !important;
+}
+.livestream .chat__composer .input__sticky {
+  display: none;
+}
+.livestream .chat__list .message__name__wrapper span,
+.livestream .chat__list .message__info__wrapper span {
+  color: lightgrey !important;
+}
+.livestream__metaverse {
+  position: absolute;
+  display: flex;
+  z-index: 10;
+  bottom: 0;
+  right: 0px;
+}
+.livestream__metaverse button {
+  padding: 10px;
+  padding: 10px 20px;
+  gap: 8px;
+  background: #CB6DB2;
+  box-shadow: 0px 0px 6px rgba(240, 158, 214, 0.3);
+  border-radius: 100px;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.livestream__control {
+  position: absolute;
+  display: flex;
+  z-index: 10;
+  bottom: 80px;
+  right: 20px;
+  padding: 10px;
+}
+.livestream__menu {
+  position: absolute;
+  bottom: 50px;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px;
+  width: max-content;
+  min-height: 40px;
+  background: #120320;
+  box-shadow: 0px 4px 20px rgba(20, 14, 23, 0.08);
+  border-radius: 8px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+.livestream__menu__title {
+  color: #FFFFFF;
+  width: 100%;
+  padding: 5px 0;
+  border-bottom: 1px solid #3E383D;
+}
+.livestream__menu__option {
+  color: #F4AEDE;
+  width: 100%;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.livestream__menu__option:hover {
+  color: yellow;
+}

@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../contexts";
 import MetaMask from "../../assets/image/metamask.png";
-import "./LiveStreamHeader.css";
+import "./LiveStreamHeader.scss";
 
 const LiveStreamHeader = ({ livestream }) => {
   const history = useHistory();
