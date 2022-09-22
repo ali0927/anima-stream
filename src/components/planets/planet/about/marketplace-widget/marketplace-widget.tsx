@@ -7,11 +7,33 @@ import { Btn } from "../../../common/btn/btn";
 
 import batteryImage from "../../../../../assets/items/battery.png";
 
-const listedItems = new Array(4).fill({
-  imageUrl: batteryImage,
-  title: "50 seconds",
-  price: "5 USDT",
-});
+const listedItems = [
+  {
+    imageUrl: batteryImage,
+    title: "50 tokens",
+    price: "5 USDT",
+  },
+  {
+    imageUrl: batteryImage,
+    title: "100 tokens",
+    price: "10 USDT",
+  },
+  {
+    imageUrl: batteryImage,
+    title: "200 tokens",
+    price: "20 USDT",
+  },
+  {
+    imageUrl: batteryImage,
+    title: "500 tokens",
+    price: "50 USDT",
+  },
+  {
+    imageUrl: batteryImage,
+    title: "1000 tokens",
+    price: "100 USDT",
+  },
+];
 
 export const MarketplaceWidget = () => {
   return (

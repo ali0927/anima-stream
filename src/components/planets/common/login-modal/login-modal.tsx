@@ -3,7 +3,6 @@ import styles from "./login-modal.module.scss";
 import classNames from "classnames";
 import { Btn } from "../btn/btn";
 import useWallet from "../../../../hooks/useWallet";
-import { useHistory } from "react-router-dom";
 import { ethers } from "ethers";
 import { WalletContext } from "../../../../contexts";
 export const LoginModal = ({
@@ -22,8 +21,6 @@ export const LoginModal = ({
 
   const { setSigner, setAddress } = useContext(WalletContext);
 
-  const { push } = useHistory();
-
   const onLoginBtnPress = async () => {
     try {
       setIsWeb3ModalOpened(true);
@@ -40,7 +37,7 @@ export const LoginModal = ({
       setSigner(signer);
       setAddress(address);
       alert(`Successful Signin by ${signerAddr}`);
-      push("/livestream");
+      onCloseBtnPress();
       return {
         SignMessage,
         signature,
