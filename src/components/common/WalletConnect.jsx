@@ -9,7 +9,7 @@ import { ethers } from "ethers";
 
 const SignMessage = "Signin for Donation Demo";
 
-const WalletConnect = () => {
+const WalletConnect = ({}) => {
   const onError = (error) => {
     alert(error)
   }

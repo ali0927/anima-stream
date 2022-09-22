@@ -29,10 +29,10 @@ export default function useWallet(onError) {
 
   const { cometChat, setUser } = useContext(AuthContext);
 
-  async function connectWallet() {
+  async function connectWallet(overrideProviderOptions) {
     if (!provider) {
       const web3Modal = new Web3Modal({
-        providerOptions,
+        providerOptions: overrideProviderOptions || providerOptions,
       });
       await web3Modal
         .connect()
