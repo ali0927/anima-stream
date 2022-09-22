@@ -5,7 +5,6 @@ import { Layout } from "../layout/layout";
 import { Btn } from "../common/btn/btn";
 import { About } from "./about/about";
 import { PlanetImage } from "../common/planet-image/planet-image";
-import useWallet from "../../../hooks/useWallet";
 
 import styles from "./planet.module.scss";
 
