@@ -5,6 +5,7 @@ import { Layout } from "../layout/layout";
 import { Btn } from "../common/btn/btn";
 import { About } from "./about/about";
 import { PlanetImage } from "../common/planet-image/planet-image";
+import useWallet from "../../../hooks/useWallet";
 
 import styles from "./planet.module.scss";
 
@@ -12,8 +13,10 @@ import styles from "./planet.module.scss";
 import personIcon from "../../../assets/icons/person.svg";
 import planetIcon from "../../../assets/icons/planet.svg";
 import { Characters } from "./characters/characters";
+import { LoginModal } from "../common/login-modal/login-modal";
 
 export const Planet = () => {
+  const [isLoginModalOpened, setIsLoginModalOpened] = useState(false);
   const { title } = useParams() as { title: string };
   const { push } = useHistory();
 
@@ -51,7 +54,7 @@ export const Planet = () => {
           {selectedTab === "CHARACTERS" && <Characters />}
 
           <Btn
-            onClick={() => {}}
+            onClick={() => setIsLoginModalOpened(true)}
             className={classNames("full-width", styles["btn-join"])}
           >
             join {title}
@@ -86,6 +89,10 @@ export const Planet = () => {
           />
         </div>
       </div>
+
+      {isLoginModalOpened && (
+        <LoginModal onCloseBtnPress={() => setIsLoginModalOpened(false)} />
+      )}
     </Layout>
   );
 };
