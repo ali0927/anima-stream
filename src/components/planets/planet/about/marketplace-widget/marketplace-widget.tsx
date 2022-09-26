@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 import styles from "./marketplace-widget.module.scss";
 import { AuthContext, WalletContext } from "src/contexts";
 import * as firebaseService from "src/services/firebase";
+import TUSDT from "src/lib/TUSDT.json";
 import classNames from "classnames";
 import { Btn } from "../../../common/btn/btn";
 
@@ -48,12 +49,18 @@ export const MarketplaceWidget = () => {
   const purchase = async (amount) => {
     if (!signer) return;
     try {
-      const tx = {
-        to: "0x0902CB364E49101F4ab5D4fFDE5035973e728D3F",
-        value: ethers.utils.parseEther(amount.toString()),
-      };
+      const TUSDTContract = new ethers.Contract(
+        TUSDT.address,
+        TUSDT.abi,
+        signer
+      );
 
-      await signer.sendTransaction(tx);
+      const tx = await TUSDTContract.transfer(
+        "0x0902CB364E49101F4ab5D4fFDE5035973e728D3F",
+        ethers.utils.parseEther(amount.toString())
+      );
+
+      await tx.wait();
 
       await firebaseService.update({
         key: "users",
@@ -64,7 +71,7 @@ export const MarketplaceWidget = () => {
       });
       setUser({ ...user, balance: user.balance + amount });
     } catch (error) {
-      alert("Not Enough Balance!");
+      console.log(error);
     }
   };
 

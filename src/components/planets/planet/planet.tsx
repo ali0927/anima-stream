@@ -80,7 +80,7 @@ export const Planet = () => {
               onClick={() => setIsLoginModalOpened(true)}
               className={classNames("full-width", styles["btn-join"])}
             >
-              join {title}
+              connect wallet
             </Btn>
           )}
           {signer && (
@@ -88,7 +88,7 @@ export const Planet = () => {
               onClick={() => push("/home")}
               className={classNames("full-width", styles["btn-join"])}
             >
-              join livestream
+              join {title}
             </Btn>
           )}
         </div>
