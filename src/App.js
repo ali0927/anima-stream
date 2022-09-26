@@ -71,9 +71,6 @@ function App() {
       <WalletContext.Provider value={wallet}>
         <Router>
           <Switch>
-            <Route exact path="/">
-              <WalletConnect />
-            </Route>
             <Route exact path="/home" component={Home} />
             <Route
               exact
@@ -90,7 +87,7 @@ function App() {
               <WalletConnect />
             </Route>
             <Route exact path="*">
-              <Redirect to="/" />
+              <Redirect to="/planets" />
             </Route>
           </Switch>
         </Router>

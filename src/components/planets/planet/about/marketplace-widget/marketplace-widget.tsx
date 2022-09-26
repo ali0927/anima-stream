@@ -1,5 +1,11 @@
-import React from "react";
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useContext } from "react";
+import { ethers } from "ethers";
 import styles from "./marketplace-widget.module.scss";
+import { AuthContext, WalletContext } from "src/contexts";
+import * as firebaseService from "src/services/firebase";
 import classNames from "classnames";
 import { Btn } from "../../../common/btn/btn";
 
@@ -10,32 +16,58 @@ import batteryImage from "../../../../../assets/items/battery.png";
 const listedItems = [
   {
     imageUrl: batteryImage,
-    title: "50 tokens",
-    price: "5 USDT",
+    title: "50 seconds",
+    price: 5,
   },
   {
     imageUrl: batteryImage,
-    title: "100 tokens",
-    price: "10 USDT",
+    title: "100 seconds",
+    price: 10,
   },
   {
     imageUrl: batteryImage,
-    title: "200 tokens",
-    price: "20 USDT",
+    title: "200 seconds",
+    price: 20,
   },
   {
     imageUrl: batteryImage,
-    title: "500 tokens",
-    price: "50 USDT",
+    title: "500 seconds",
+    price: 50,
   },
   {
     imageUrl: batteryImage,
-    title: "1000 tokens",
-    price: "100 USDT",
+    title: "1000 seconds",
+    price: 100,
   },
 ];
 
 export const MarketplaceWidget = () => {
+  const { user, setUser } = useContext(AuthContext);
+  const { signer } = useContext(WalletContext);
+
+  const purchase = async (amount) => {
+    if (!signer) return;
+    try {
+      const tx = {
+        to: "0x0902CB364E49101F4ab5D4fFDE5035973e728D3F",
+        value: ethers.utils.parseEther(amount.toString()),
+      };
+
+      await signer.sendTransaction(tx);
+
+      await firebaseService.update({
+        key: "users",
+        id: user.id,
+        payload: {
+          balance: user.balance + amount,
+        },
+      });
+      setUser({ ...user, balance: user.balance + amount });
+    } catch (error) {
+      alert("Not Enough Balance!");
+    }
+  };
+
   return (
     <div
       className={classNames(
@@ -68,6 +100,7 @@ export const MarketplaceWidget = () => {
                 styles["carousel-item"]
               )}
               key={item.title + index}
+              onClick={() => purchase(item.price)}
             >
               <div
                 className={classNames(
@@ -91,7 +124,9 @@ export const MarketplaceWidget = () => {
 
               <span className={classNames("full-width", styles["spacer"])} />
 
-              <span className={classNames(styles["price"])}>{item.price}</span>
+              <span className={classNames(styles["price"])}>
+                {item.price} USDT
+              </span>
             </div>
           );
         })}
