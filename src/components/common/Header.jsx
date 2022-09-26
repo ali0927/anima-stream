@@ -91,7 +91,7 @@ const Header = () => {
           {address ? shortAddr(address) : `Connect Wallet`}
         </div>
         <div className="header__option">
-          {`$${user.balance}`}
+          {`${user.balance} Sec`}
         </div>
         <div className="header__option" onClick={goRoute("/charge")}>
           Charge

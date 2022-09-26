@@ -22,7 +22,7 @@ const LiveStreamHeader = ({ livestream }) => {
       </div>
       <div style={{display: "flex", alignItems: "center"}}>
         <img src={MetaMask} className="liveStreamHeader__logo" alt="metamask"/>
-        <label className="liveStreamHeader__balance">{`${user.balance * 10} sec`}</label>
+        <label className="liveStreamHeader__balance">{`${user.balance} sec`}</label>
       </div>
     </div>
   );

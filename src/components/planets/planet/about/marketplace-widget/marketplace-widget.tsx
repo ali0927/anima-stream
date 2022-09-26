@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 import styles from "./marketplace-widget.module.scss";
 import { AuthContext, WalletContext } from "src/contexts";
 import * as firebaseService from "src/services/firebase";
+import * as uiService from "src/services/ui";
 import TUSDT from "src/lib/TUSDT.json";
 import classNames from "classnames";
 import { Btn } from "../../../common/btn/btn";
@@ -47,7 +48,11 @@ export const MarketplaceWidget = () => {
   const { signer } = useContext(WalletContext);
 
   const purchase = async (amount) => {
-    if (!signer) return;
+    if (!signer) {
+      uiService.alert(`You need to connect wallet!`);
+      return;
+    }
+    uiService.showLoading();
     try {
       const TUSDTContract = new ethers.Contract(
         TUSDT.address,
@@ -66,13 +71,15 @@ export const MarketplaceWidget = () => {
         key: "users",
         id: user.id,
         payload: {
-          balance: user.balance + amount,
+          balance: user.balance + amount * 10,
         },
       });
-      setUser({ ...user, balance: user.balance + amount });
+      setUser({ ...user, balance: user.balance + amount * 10 });
     } catch (error) {
       console.log(error);
+      uiService.alert(`Failure to charge your balance, please try again`);
     }
+    uiService.hideLoading();
   };
 
   return (

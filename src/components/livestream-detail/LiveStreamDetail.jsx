@@ -15,12 +15,15 @@ const PurchasingMenu = [
     title: "Remove clothes",
     options: [
       {
+        amount: 10,
         text: "10 seconds"
       },
       {
+        amount: 30,
         text: "30 seconds"
       },
       {
+        amount: 60,
         text: "60 seconds"
       }
     ]
@@ -29,6 +32,7 @@ const PurchasingMenu = [
     title: "Private show",
     options: [
       {
+        amount: 60,
         text: "1 minute"
       },
     ]
@@ -37,6 +41,7 @@ const PurchasingMenu = [
     title: "Spy on private show",
     options: [
       {
+        amount: 60,
         text: "1 minute"
       },
     ]
@@ -48,18 +53,23 @@ const LovenceMenu = [
     title: "Lovence",
     options: [
       {
+        amount: 1,
         text: "1 second"
       },
       {
+        amount: 3,
         text: "3 seconds"
       },
       {
+        amount: 5,
         text: "5 seconds"
       },
       {
+        amount: 15,
         text: "15 seconds"
       },
       {
+        amount: 30,
         text: "30 seconds"
       }
     ]

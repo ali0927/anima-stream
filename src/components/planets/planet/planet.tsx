@@ -48,7 +48,7 @@ export const Planet = () => {
                 alt="metamask"
               />
               <label className="liveStreamHeader__balance">
-                {`${user.balance * 10} sec`}
+                {`${user.balance} sec`}
               </label>
             </div>
           )}

@@ -27,12 +27,12 @@ const Charge = () => {
         key: "users",
         id: user.id,
         payload: {
-          balance: user.balance + amount
+          balance: user.balance + amount * 10
         },
       });
 
       setAmount(0);
-      setUser({...user, balance: user.balance + amount});
+      setUser({...user, balance: user.balance + amount * 10});
       uiService.alert(`Your balance was charged successfully`);
     } catch (error) {
       uiService.alert(`Failure to charge your balance, please try again`);
@@ -60,7 +60,7 @@ const Charge = () => {
               <label>{`$${user.balance}`}</label>
             </div>
             <div className="create-livestream__info">
-              <label>1 USDT = 1 Coin </label>
+              <label>1 USDT = 10 Seconds </label>
               <label>{`You will get $${amount}`}</label>
             </div>
             <input
