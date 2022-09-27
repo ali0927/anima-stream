@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./login-modal.module.scss";
 import classNames from "classnames";
 import { Btn } from "../btn/btn";
@@ -20,6 +21,11 @@ export const LoginModal = ({
   const [, , , , connectWallet] = useWallet(onError);
 
   const { setSigner, setAddress } = useContext(WalletContext);
+
+  useEffect(() => {
+    onLoginBtnPress();
+    onCloseBtnPress();
+  }, []);
 
   const onLoginBtnPress = async () => {
     try {
