@@ -19,6 +19,7 @@ import { Planet } from "./components/planets/planet/planet";
 import "@fontsource/inter";
 import "./index.scss";
 import "./global.scss";
+import { Rooms } from "./components/planets/planet/rooms/rooms";
 
 function App() {
   const [signer, setSigner] = useState();
@@ -82,6 +83,7 @@ function App() {
             <Route exact path="/charge" component={Charge} />
             <Route exact path="/planets" component={PlanetsCarousel} />
             <Route path={"/planets/:title"} component={Planet} />
+            <Route path={"/planets/:title/rooms"} component={Rooms} />
 
             <Route exact path="/login">
               <WalletConnect />
