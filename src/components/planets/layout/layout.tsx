@@ -4,6 +4,7 @@ import React from "react";
 import "../../../assets/backgrounds/background.png";
 import classNames from "classnames";
 import styles from "./layout.module.scss";
+import { Header } from "./header/header";
 
 export const Layout = ({
   children,
@@ -17,6 +18,7 @@ export const Layout = ({
         styles.layout
       )}
     >
+      <Header />
       {children}
     </div>
   );

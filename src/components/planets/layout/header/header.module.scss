@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  width: 100%;
+  height: 5.5rem;
+  position: fixed;
+  padding: 0 1.25rem;
+  border-bottom: 1px solid #3E383D;
+  top: 0;
+  .tab {
+    height: 100%;
+    padding: 0 1.25rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    color: #797979;
+  }
+  .active {
+    border-bottom: 1px solid #F4AEDE;
+    color: #FFFFFF;
+  }
+  .logo {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.625rem;
+  }
+}
