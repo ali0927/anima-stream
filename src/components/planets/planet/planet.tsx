@@ -5,7 +5,6 @@ import { Layout } from "../layout/layout";
 import { Btn } from "../common/btn/btn";
 import { About } from "./about/about";
 import { PlanetImage } from "../common/planet-image/planet-image";
-import MetaMask from "../../../assets/image/metamask.png";
 
 import styles from "./planet.module.scss";
 
@@ -14,8 +13,7 @@ import personIcon from "../../../assets/icons/person.svg";
 import planetIcon from "../../../assets/icons/planet.svg";
 import { Characters } from "./characters/characters";
 import { LoginModal } from "../common/login-modal/login-modal";
-import { AuthContext, WalletContext } from "src/contexts";
-import { Header } from "../layout/header/header";
+import { WalletContext } from "src/contexts";
 
 export const Planet = () => {
   const [isLoginModalOpened, setIsLoginModalOpened] = useState(false);
