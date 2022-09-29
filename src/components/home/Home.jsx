@@ -50,8 +50,8 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-    localStorage.setItem("livestream", JSON.stringify(livestream));
-    history.push("/livestream");
+    history.push(`/livestream/${livestream.id}`);
+
   };
 
   const startLiveStream = (livestream) => async () => {
@@ -60,8 +60,7 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-    localStorage.setItem("livestream", JSON.stringify(livestream));
-    history.push("/livestream");
+    history.push(`/livestream/${livestream.id}`);
   }
 
   return (
