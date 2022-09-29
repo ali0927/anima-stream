@@ -15,12 +15,12 @@ import planetIcon from "../../../assets/icons/planet.svg";
 import { Characters } from "./characters/characters";
 import { LoginModal } from "../common/login-modal/login-modal";
 import { AuthContext, WalletContext } from "src/contexts";
+import { Header } from "../layout/header/header";
 
 export const Planet = () => {
   const [isLoginModalOpened, setIsLoginModalOpened] = useState(false);
   const { title } = useParams() as { title: string };
   const { push } = useHistory();
-  const { user } = useContext(AuthContext);
   const { signer } = useContext(WalletContext);
 
   const [selectedTab, setSelectedTab] = useState("ABOUT");
@@ -29,30 +29,10 @@ export const Planet = () => {
     <Layout>
       <div
         className={classNames(
-          "full-height full-width flex row align-center justify-space-between",
+          "full-height full-width flex row align-start justify-space-between",
           styles.planet
         )}
       >
-        <div className={classNames(styles["header"])}>
-          <div className={classNames("full-height flex row align-center")}>
-            <div className={classNames(styles["tab"], styles["active"])}>
-              MAIN PAGE
-            </div>
-            <div className={classNames(styles["tab"])}>MARKETPLACE</div>
-          </div>
-          {signer && (
-            <div className={classNames("flex align-center")}>
-              <img
-                src={MetaMask}
-                className={classNames(styles["logo"])}
-                alt="metamask"
-              />
-              <label className="liveStreamHeader__balance">
-                {`${user.balance} sec`}
-              </label>
-            </div>
-          )}
-        </div>
         <div
           className={classNames(
             "full-height flex column align-center justify-center",
@@ -85,7 +65,7 @@ export const Planet = () => {
           )}
           {signer && (
             <Btn
-              onClick={() => push("/home")}
+              onClick={() => push(`/planets/${title}/rooms`)}
               className={classNames("full-width", styles["btn-join"])}
             >
               join {title}
@@ -95,7 +75,7 @@ export const Planet = () => {
 
         <div
           className={classNames(
-            "full-height full-width flex column justify-center align-center",
+            "full-height full-width flex column justify-start align-center",
             styles["planet-widget"]
           )}
         >

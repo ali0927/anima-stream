@@ -1,4 +1,10 @@
 .planet-image {
+
+  &.with-title {
+    position: relative;
+    top: -4rem;
+  }
+
   .image-wrapper {
     position: relative;
 

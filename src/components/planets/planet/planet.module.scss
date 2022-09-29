@@ -5,8 +5,7 @@
     width: 42.125rem;
     min-width: 42.125rem;
     height: 54.5rem;
-    margin-left: 4rem;
-    margin-top: 6rem;
+    margin-left: 1.5rem;
     padding: 1.25rem;
     border-radius: 1.25rem;
     backdrop-filter: blur(12.5px);
@@ -49,40 +48,4 @@
 
   }
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #fff;
-    width: 100%;
-    height: 60px;
-    position: fixed;
-    padding: 0 20px;
-    border-bottom: 1px solid #3E383D;
-    top: 0;
-    .tab {
-      font-weight: bold;
-      height: 100%;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      font-family: 'Nunito';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 18px;
-      text-transform: uppercase;
-      border-bottom: 1px solid transparent;
-      color: #797979;
-    }
-    .active {
-      border-bottom: 1px solid #F4AEDE;
-      color: #FFFFFF; 
-    }
-    .logo {
-      width: 40px;
-      height: 40px;
-      margin-right: 10px;
-    }
-  }
 }

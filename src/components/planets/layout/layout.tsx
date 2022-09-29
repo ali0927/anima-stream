@@ -4,6 +4,7 @@ import React from "react";
 import "../../../assets/backgrounds/background.png";
 import classNames from "classnames";
 import styles from "./layout.module.scss";
+import { Header } from "./header/header";
 
 export const Layout = ({
   children,
@@ -13,11 +14,19 @@ export const Layout = ({
   return (
     <div
       className={classNames(
-        "full-height-norelative full-width-norelative flex column justify-space-between align-center overflow-hidden",
+        "full-height-norelative full-width-norelative flex column justify-start align-center overflow-hidden",
         styles.layout
       )}
     >
-      {children}
+      <Header />
+      <div
+        className={classNames(
+          "full-height full-width flex column align-center justify-start",
+          styles["content-container"]
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 };
