@@ -10,6 +10,8 @@ import * as cometChatService from "../services/cometchat";
 import { AuthContext } from "../contexts";
 import { shortAddr } from "../lib/utils";
 import * as firebaseService from "../services/firebase";
+import firebase from "firebase";
+import {CometChat} from '@cometchat-pro/chat';
 
 const providerOptions = {
   walletconnect: {
@@ -38,6 +40,16 @@ export default function useWallet(onError) {
         .connect()
         .then((p) => {
           setWeb3Provider(p);
+          const _provider = new ethers.providers.Web3Provider(p);
+          setProvider(_provider);
+          _provider.getNetwork().then(({ chainId }) => setChain(chainId));
+          _provider.listAccounts().then((addresses) => {
+            if (addresses.length > 0) {
+              setAddress(addresses[0]);
+              setSigner(_provider.getSigner());
+              registerCometChat(addresses[0]);
+            }
+          });
         })
         .catch((error) => {
           onError({
@@ -95,7 +107,17 @@ export default function useWallet(onError) {
     }
     setUser(user);
     await cometChatService.login(cometChat, user);
-    localStorage.setItem("auth", JSON.stringify(user));
+
+    // console.log('2. Received FCM Token');
+
+    // const messaging = firebase.messaging();
+    // FCM_TOKEN = await messaging.getToken();
+    // console.log('2. Received FCM Token', FCM_TOKEN);
+
+    // // Register the FCM Token
+    // await CometChat.registerTokenForPushNotification(FCM_TOKEN);
+    // console.log('3. Registered FCM Token');
+
   }
 
   useEffect(() => {

@@ -5,21 +5,51 @@ import * as firebaseService from "../../services/firebase";
 import * as uiService from "../../services/ui";
 import "./LiveStreamDetail.css";
 
-const ToolBarMenu = ({ items, show, onClose }) => {
+const ToolBarMenu = ({ items, show, onClose, livestreamId }) => {
   const { user, setUser } = useContext(AuthContext);
 
-  const handleOption = async (item) => {
+  const handleOption = async (item, option) => {
     try {
       uiService.showLoading();
-      await firebaseService.update({
-        key: "users",
-        id: user.id,
-        payload: {
-          balance: user.balance - item.amount
-        },
-      });
+      if (user.balance > option.amount) {
+        await firebaseService.update({
+          key: "users",
+          id: user.id,
+          payload: {
+            balance: user.balance - option.amount
+          },
+        });
 
-      setUser({...user, balance: user.balance - item.amount});
+        const livestream = await firebaseService.getSingleDataWithQuery({
+          key: "livestreams",
+          query: "id",
+          criteria: livestreamId,
+        });
+
+        let donations = livestream.donations ? livestream.donations: [];
+        donations = [
+          ...donations,
+          {
+            title: item.title,
+            amount: option.amount,
+            text: option.text,
+            notify: false,
+            user: user
+          }
+        ];
+
+        await firebaseService.update({
+          key: "livestreams",
+          id: livestreamId,
+          payload: {
+            balance: livestream.balance + option.amount,
+            donations: donations
+          },
+        });
+
+        setUser({...user, balance: user.balance - option.amount});
+      }
+
     } catch (error) {
       console.log(error)
       uiService.alert(`Failure to purchase`);
@@ -36,7 +66,11 @@ const ToolBarMenu = ({ items, show, onClose }) => {
             <>
               <div className="livestream__menu__title">{item.title}</div>
               {item.options.map(option =>
-                <div className="livestream__menu__option" onClick={() => handleOption(option)}>
+                <div 
+                  className="livestream__menu__option" 
+                  onClick={() => handleOption(item, option)} 
+                  key={`{items.title}{option.amount}`}
+                >
                   {option.text}
                 </div>
               )}

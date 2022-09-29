@@ -66,7 +66,6 @@ const Login = ({ toggleModal }) => {
 
   const saveAuthedInfo = (user) => {
     setUser(user);
-    localStorage.setItem("auth", JSON.stringify(user));
   };
 
   return (

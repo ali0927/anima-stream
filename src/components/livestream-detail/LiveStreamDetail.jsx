@@ -1,13 +1,15 @@
 /* eslint-disable */
 
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 import { CometChatMessages } from "../../cometchat-pro-react-ui-kit/CometChatWorkspace/src";
 import LiveStreamHeader from "../livestream-header/LiveStreamHeader";
 import ToolBarMenu from "./ToolBarMenu";
+import Notification from "./Notification";
 import { AuthContext } from "../../contexts";
 import { CometChat } from "@cometchat-pro/chat";
+import * as firebaseService from "../../services/firebase";
 import "./LiveStreamDetail.scss";
 
 const PurchasingMenu = [
@@ -86,25 +88,31 @@ const LovenceMenu = [
 
 const LiveStreamDetail = () => {
   const [livestream, setLivestream] = useState(null);
+  const { id } = useParams();
   const [activePublic, setAcivePublic] = useState(true);
   const [showPurchasing, setShowPurchasing] = useState(false);
   const [showLovence, setShowLovence] = useState(false);
   const { cometChat, user } = useContext(AuthContext);
+  const [notification, setNotification] = useState(null);
 
   const history = useHistory();
 
   useEffect(() => {
-    const livestream = JSON.parse(localStorage.getItem("livestream"));
-    if (livestream) {
-      setLivestream(livestream);
-    }
-  }, []);
+    getLivestream(id);
+  }, [id]);
 
   useEffect(() => {
     if (livestream && cometChat) {
       startDirectCall();
     }
   }, [livestream, cometChat]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!notification && livestream.createdBy.id === user.id) getNotificiation()
+    }, 500);
+    return () => clearInterval(interval);
+  }, [livestream]);
 
   const startDirectCall = () => {
     if (cometChat && livestream) {
@@ -189,6 +197,39 @@ const LiveStreamDetail = () => {
     }
   };
 
+  const getLivestream = async (id) => {
+    const livestream = await firebaseService.getSingleDataWithQuery({
+      key: "livestreams",
+      query: "id",
+      criteria: id,
+    });
+    setLivestream(livestream);
+  }
+
+  const getNotificiation = async () => {
+    const livestream = await firebaseService.getSingleDataWithQuery({
+      key: "livestreams",
+      query: "id",
+      criteria: id,
+    });
+    
+    let donations = livestream.donations ? livestream.donations: [];
+    donations.forEach(async (donation) => {
+      if (!donation.notify) {
+        setNotification(`${donation.title} ${donation.text} from ${donation.user.fullname}`);
+        donation.notify = true;
+        await firebaseService.update({
+          key: "livestreams",
+          id: livestream.id,
+          payload: {
+            donations: donations
+          },
+        });
+        return;
+      }
+    });
+  };
+
   if (!livestream || !cometChat) return <React.Fragment></React.Fragment>;
 
   return (
@@ -197,39 +238,50 @@ const LiveStreamDetail = () => {
       <div className="livestream__container">
         <div className="livestream__left">
           <div className="livestream__control">
-            <div style={{position: "relative"}}>
-              <button
-                className="livestream__btn__purchasing"
-                onClick={() => {
-                  setShowPurchasing(!showPurchasing)
-                  setShowLovence(false)
-                }}
-              />
-              <ToolBarMenu
-                items={PurchasingMenu}
-                show={showPurchasing}
-                onClose={() => setShowPurchasing(false)}
-                />
-            </div>
-            <div style={{position: "relative"}}>
-              <button
-                className="livestream__btn__lovence"
-                onClick={() => {
-                  setShowLovence(!showLovence)
-                  setShowPurchasing(false)
-                }}
-              />
-              <ToolBarMenu
-                items={LovenceMenu}
-                show={showLovence}
-                onClose={() => setShowLovence(false)}
-                />
-            </div>
-            <button className="livestream__btn__emotic"></button>
+            {livestream && livestream.createdBy.id !== user.id &&
+              <>
+                <div style={{position: "relative"}}>
+                  <button
+                    className="livestream__btn__purchasing"
+                    onClick={() => {
+                      setShowPurchasing(!showPurchasing)
+                      setShowLovence(false)
+                    }}
+                  />
+                  <ToolBarMenu
+                    items={PurchasingMenu}
+                    show={showPurchasing}
+                    onClose={() => setShowPurchasing(false)}
+                    livestreamId={livestream.id}
+                    />
+                </div>
+                <div style={{position: "relative"}}>
+                  <button
+                    className="livestream__btn__lovence"
+                    onClick={() => {
+                      setShowLovence(!showLovence)
+                      setShowPurchasing(false)
+                    }}
+                  />
+                  <ToolBarMenu
+                    items={LovenceMenu}
+                    show={showLovence}
+                    onClose={() => setShowLovence(false)}
+                    livestreamId={livestream.id}
+                    />
+                </div>
+                <button className="livestream__btn__emotic"></button>
+              </>
+            }
           </div>
           <button
             className="livestream__backBtn"
             onClick={() => history.push("/home")}
+          />
+          <Notification 
+            isOpen={notification}
+            onClose={() => setNotification(null)}
+            notification={notification}
           />
           {livestream.createdBy.id !== user.id &&
             <div className="livestream__metaverse">

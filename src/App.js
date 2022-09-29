@@ -67,6 +67,10 @@ function App() {
     initCometChat();
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("auth", JSON.stringify(user));
+  }, [user]);
+
   return (
     <AuthContext.Provider value={auth}>
       <WalletContext.Provider value={wallet}>
@@ -78,7 +82,7 @@ function App() {
               path="/create-livestream"
               component={CreateLiveStream}
             />
-            <Route exact path="/livestream" component={LiveStreamDetail} />
+            <Route exact path="/livestream/:id" component={LiveStreamDetail} />
             <Route exact path="/donation" component={Donation} />
             <Route exact path="/charge" component={Charge} />
             <Route exact path="/planets" component={PlanetsCarousel} />

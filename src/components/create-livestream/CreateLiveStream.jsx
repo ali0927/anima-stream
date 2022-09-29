@@ -93,6 +93,7 @@ const CreateLiveStream = () => {
         description: livestreamDescription,
         balance: 0,
         createdBy: user,
+        donations: [],
       },
     });
   };

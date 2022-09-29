@@ -207,3 +207,21 @@
 .livestream__menu__option:hover {
   color: yellow;
 }
+
+.livestream__notification {
+  width: 360px;
+  height: 50px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: #3399ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Inter';
+  font-size: 14px;
+  z-index: 10;
+}
