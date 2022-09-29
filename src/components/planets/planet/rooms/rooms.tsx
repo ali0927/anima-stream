@@ -6,7 +6,7 @@ import classNames from "classnames";
 export const Rooms = ({ title }: { title: string }) => {
   return (
     <Layout>
-      <div className={classNames()}>rooms</div>
+      <div className={classNames(styles["rooms"])}>rooms {title}</div>
     </Layout>
   );
 };
