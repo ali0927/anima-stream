@@ -64,7 +64,7 @@ export const PlanetCarouselItem = ({
           )}
         >
           <span className={styles["description"]}>
-            Nexus was founded as a first interstellar haven, bringing together
+            Neatis was founded as a first interstellar haven, bringing together
             species and races from all over the universe
           </span>
           <Btn

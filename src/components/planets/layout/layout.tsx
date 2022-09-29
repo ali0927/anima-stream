@@ -14,12 +14,19 @@ export const Layout = ({
   return (
     <div
       className={classNames(
-        "full-height-norelative full-width-norelative flex column justify-space-between align-center overflow-hidden",
+        "full-height-norelative full-width-norelative flex column justify-start align-center overflow-hidden",
         styles.layout
       )}
     >
       <Header />
-      {children}
+      <div
+        className={classNames(
+          "full-height full-width flex column align-center justify-start",
+          styles["content-container"]
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 };

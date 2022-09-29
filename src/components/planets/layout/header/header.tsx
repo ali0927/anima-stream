@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import styles from "./header.module.scss";
 import classNames from "classnames";
-import MetaMask from "../../../../assets/image/metamask.png";
 import { AuthContext, WalletContext } from "src/contexts";
+
+// assets
+import MetaMask from "../../../../assets/image/metamask.png";
 
 export const Header = () => {
   const { user } = useContext(AuthContext);
   const { signer } = useContext(WalletContext);
-  console.log({ signer, user });
   return (
     <div className={classNames(styles["header"])}>
       <div className={classNames("full-height flex row align-center")}>

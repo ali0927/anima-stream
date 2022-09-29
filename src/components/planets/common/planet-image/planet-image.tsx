@@ -43,7 +43,8 @@ export const PlanetImage = ({
         "flex column align-center justify-center",
         styles["planet-image"],
         className,
-        rotating && styles["rotating"]
+        rotating && styles["rotating"],
+        showTitle && styles["with-title"]
       )}
     >
       {/* basic planet data: title & image */}

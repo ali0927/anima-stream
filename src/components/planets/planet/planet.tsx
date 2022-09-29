@@ -29,7 +29,7 @@ export const Planet = () => {
     <Layout>
       <div
         className={classNames(
-          "full-height full-width flex row align-center justify-space-between",
+          "full-height full-width flex row align-start justify-space-between",
           styles.planet
         )}
       >
@@ -65,7 +65,7 @@ export const Planet = () => {
           )}
           {signer && (
             <Btn
-              onClick={() => push("/home")}
+              onClick={() => push(`/planets/${title}/rooms`)}
               className={classNames("full-width", styles["btn-join"])}
             >
               join {title}
@@ -75,7 +75,7 @@ export const Planet = () => {
 
         <div
           className={classNames(
-            "full-height full-width flex column justify-center align-center",
+            "full-height full-width flex column justify-start align-center",
             styles["planet-widget"]
           )}
         >

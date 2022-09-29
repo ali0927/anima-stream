@@ -86,8 +86,8 @@ function App() {
             <Route exact path="/donation" component={Donation} />
             <Route exact path="/charge" component={Charge} />
             <Route exact path="/planets" component={PlanetsCarousel} />
-            <Route path={"/planets/:title"} component={Planet} />
-            <Route path={"/planets/:title/rooms"} component={Rooms} />
+            <Route exact path={"/planets/:title"} component={Planet} />
+            <Route exact path={"/planets/:title/rooms"} component={Rooms} />
 
             <Route exact path="/login">
               <WalletConnect />
