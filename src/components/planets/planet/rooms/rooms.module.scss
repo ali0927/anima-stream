@@ -1,0 +1,237 @@
+.rooms {
+  padding-left: 4.625rem;
+  padding-right: 4.625rem;
+  padding-top: 2.5rem;
+
+    .header {
+      height: 5.125rem;
+      .btn-back {
+        border-radius: 50%;
+        height: 2.75rem;
+        width: 2.75rem;
+        position: relative;
+        top: -0.125rem;
+        background-color: rgba(184, 100, 162, 0.3);
+        background-image: url("../../../../assets/icons/arrows/left-rose.svg");
+        background-size: 2rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin-right: 1rem;
+      }
+      .title {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 600;
+        font-size: 3.75rem;
+        letter-spacing: 0.01rem;
+        text-transform: uppercase;
+        color: #FFFFFF;
+        text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+      }
+
+      .tabs {
+        height: 2.5rem;
+
+        .tab {
+          cursor: pointer;
+          transition: opacity .25s ease, transform .25s ease;
+          will-change: opacity, transform;
+          opacity: 1;
+          transform: scale(1);
+
+          .tab-title {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 1.75rem;
+            text-transform: uppercase;
+            color: #E6E6E6;
+            text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.1);
+          }
+
+          .tab-icon {
+            height: 2.5rem;
+            width: 2.5rem;
+            object-fit: contain;
+            border-radius: 50%;
+            margin-left: .125rem;
+          }
+
+          &:not(.tab-disabled):not(.tab-active):hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+          }
+
+          &.tab-disabled {
+            cursor: not-allowed;
+            opacity: .75;
+
+            .tab-title {
+              color: #797979;
+              text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.1);
+            }
+          }
+
+          &.tab-active {
+            border-bottom: 2px solid #CB6DB2;
+          }
+
+
+          &:not(:last-of-type) {
+            margin-right: 2.5rem;
+          }
+        }
+      }
+
+    }
+
+    .room-widgets-list {
+      margin-top: 2.5rem;
+
+      .room-widget {
+        background: transparent;
+        border: none;
+        position: relative;
+        aspect-ratio: 428/348;
+        width: calc(25% - 1.25rem);
+        margin-bottom: 2rem;
+
+        &:not(:nth-child(4n)) {
+           margin-right: 1.5rem;
+        }
+
+
+        .image-wrapper {
+          pointer-events: none;
+          position: relative;
+
+          .image {
+            object-fit: contain;
+          }
+
+          .corner-dot {
+            position: absolute;
+            width: 0.25rem;
+            height: 0.25rem;
+            background-color: rgba(173, 173, 173, 1);
+
+            &:nth-of-type(1) {
+              top: 0;
+              left: 0;
+            }
+            &:nth-of-type(2) {
+              bottom: 0;
+              left: 0;
+            }
+            &:nth-of-type(3) {
+              top: 0;
+              right: 0;
+            }
+            &:nth-of-type(4) {
+              bottom: 0;
+              right: 0;
+            }
+
+          }
+
+          .live-label {
+            background-color: rgba(241, 54, 121, 1);
+            height: 2rem;
+            width: 3.125rem;
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            text-transform: uppercase;
+            border-radius: .5rem;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: .75rem;
+            will-change: transform;
+            transition: transform .25s ease;
+            transform: scale(1);
+          }
+        }
+
+
+        .room-widget-title {
+          font-family: 'Nunito', sans-serif;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 1.5rem;
+          text-transform: uppercase;
+          color: #FFFFFF;
+        }
+
+        .room-widget-lock-icon {
+          position: relative;
+          height: 3rem;
+          width: 3rem;
+          margin-right: .5rem;
+          border-radius: 50%;
+          background-image: url("../../../../assets/icons/lock.png");
+          background-size: cover;
+
+
+          .access-restricted-popup {
+            position: absolute;
+            bottom: 2.825rem;
+            left: -1.75rem;
+            width: 17.875rem;
+            height: 8.125rem;
+            padding: .75rem;
+            border-radius: .5rem;
+            background-color: rgba(18, 3, 32, 1);
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.125rem;
+
+            .upgrade-btn {
+              background-color: rgba(203, 109, 178, 1);
+              height: 3rem;
+              font-family: 'Nunito', sans-serif;
+              font-weight: 700;
+              font-size: 1.125rem;
+              border-radius: 6.25rem;
+            }
+            .arrow-bottom {
+              position: absolute;
+              bottom: -.5rem;
+              left: 2rem;
+              background-color: transparent;
+              pointer-events: none;
+              width: 0;
+              height: 0;
+              border-left: 1.25rem solid transparent;
+              border-right: 1.25rem solid transparent;
+              border-top: 0.625rem solid rgba(18, 3, 32, 1);
+            }
+          }
+
+        }
+
+
+        will-change: transform, opacity;
+        transition: transform .25s ease, opacity .25s ease;
+        transform: scale(1);
+        opacity: 1;
+
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.0125);
+            opacity: 0.9;
+
+          .corner-dot {
+            background-color: rgba(203, 109, 178, 1)
+          }
+
+          .live-label {
+            transform: scale(1.125);
+          }
+        }
+
+
+      }
+    }
+}
