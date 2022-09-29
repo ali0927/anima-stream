@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import classNames from "classnames";
 import styles from "./btn.module.scss";
 
@@ -9,17 +9,24 @@ export const Btn = ({
   className,
   rounded,
   iconSrc,
+  stopPropagation,
 }: {
   children?: any;
-  onClick: () => any;
+  onClick: MouseEventHandler;
   disabled?: boolean;
   className?: string;
   rounded?: boolean;
   iconSrc?: string;
+  stopPropagation?: boolean;
 }) => {
   return (
     <button
-      onClick={onClick}
+      onClick={(event) => {
+        if (stopPropagation) {
+          event.stopPropagation();
+        }
+        onClick(event);
+      }}
       className={classNames(
         "flex column align-center justify-center",
         styles.btn,

@@ -85,6 +85,14 @@ input {
     }
   }
 
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &.wrap {
+      flex-wrap: wrap;
+  }
+
 }
 
 .full {
