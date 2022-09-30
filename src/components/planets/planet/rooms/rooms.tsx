@@ -130,8 +130,13 @@ export const Rooms = () => {
               )}
               onClick={() => {
                 setAccessRestrictedPopUpOnRoom(null);
-                room.premiumAccessIsRequired &&
+
+                if (room.premiumAccessIsRequired) {
                   setAccessRestrictedPopUpOnRoom(room);
+                  return;
+                }
+
+                push(`/home`);
               }}
             >
               <div className={classNames(styles["image-wrapper"])}>
