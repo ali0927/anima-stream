@@ -1,8 +1,7 @@
 /* eslint-disable */
 
 import React, { useState, useEffect, useContext } from "react";
-import { useHistory, useParams } from "react-router";
-
+import { useHistory, useParams } from "react-router-dom";
 import { CometChatMessages } from "../../cometchat-pro-react-ui-kit/CometChatWorkspace/src";
 import LiveStreamHeader from "../livestream-header/LiveStreamHeader";
 import ToolBarMenu from "./ToolBarMenu";
