@@ -17,7 +17,7 @@ export const Header = () => {
         </div>
         <div className={classNames(styles["tab"])}>MARKETPLACE</div>
       </div>
-      {signer && (
+      {user && signer && (
         <div className={classNames("flex align-center")}>
           <img
             src={MetaMask}

@@ -22,9 +22,14 @@ import "./global.scss";
 import { Rooms } from "./components/planets/planet/rooms/rooms";
 
 function App() {
-  const [signer, setSigner] = useState();
-  const [address, setAddress] = useState();
-  const [user, setUser] = useState(null);
+  const authenticatedUser = localStorage.getItem("auth");
+  const walletSigner = localStorage.getItem("signer");
+
+  const [signer, setSigner] = useState(walletSigner ? walletSigner : null);
+  const [address, setAddress] = useState(null);
+  const [user, setUser] = useState(
+    authenticatedUser ? JSON.parse(authenticatedUser) : null
+  );
   const [cometChat, setCometChat] = useState(null);
 
   const wallet = useMemo(
@@ -37,13 +42,6 @@ function App() {
     setUser,
     cometChat,
     setCometChat,
-  };
-
-  const initAuthUser = () => {
-    const authenticatedUser = localStorage.getItem("auth");
-    if (authenticatedUser) {
-      setUser(JSON.parse(authenticatedUser));
-    }
   };
 
   const initCometChat = async () => {
@@ -63,13 +61,16 @@ function App() {
   };
 
   useEffect(() => {
-    initAuthUser();
     initCometChat();
   }, []);
 
   useEffect(() => {
     localStorage.setItem("auth", JSON.stringify(user));
   }, [user]);
+
+  useEffect(() => {
+    localStorage.setItem("signer", signer);
+  }, [signer]);
 
   return (
     <AuthContext.Provider value={auth}>

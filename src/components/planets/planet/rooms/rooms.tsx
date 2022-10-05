@@ -25,6 +25,7 @@ export const Rooms = () => {
       image: irelImage,
       premiumAccessIsRequired: false,
       isLive: true,
+      id: "5b56256b-3aa9-4d43-912a-21c545b2f6cf",
     },
     {
       title: "Alvin",
@@ -136,7 +137,7 @@ export const Rooms = () => {
                   return;
                 }
 
-                push(`/home`);
+                if (room.id) push(`/livestream/${room.id}`);
               }}
             >
               <div className={classNames(styles["image-wrapper"])}>

@@ -178,14 +178,14 @@ const LiveStreamDetail = () => {
             const idx = userList.findIndex(member => member.uid === streamerId.toLowerCase());
             if (idx === -1 && streamerId !== user.id) {
               alert('LiveStream is not started yet!');
-              history.push("/home");
+              history.push("/planets/Neatis/rooms");
             }
           },
           onCallEnded: (call) => {
-            history.push("/home");
+            history.push("/planets/Neatis/rooms");
           },
           onError: (error) => {
-            history.push("/home");
+            history.push("/planets/Neatis/rooms");
           },
           onMediaDeviceListUpdated: (deviceList) => {},
           onUserMuted: (userMuted, userMutedBy) => {},
@@ -275,7 +275,7 @@ const LiveStreamDetail = () => {
           </div>
           <button
             className="livestream__backBtn"
-            onClick={() => history.push("/home")}
+            onClick={() => history.push("/planets/Neatis/rooms")}
           />
           <Notification 
             isOpen={notification}
