@@ -30,8 +30,9 @@ export const Rooms = () => {
     {
       title: "Alvin",
       image: alvinImage,
-      premiumAccessIsRequired: true,
+      premiumAccessIsRequired: false,
       isLive: true,
+      id: "3f5b706c-d810-4182-8164-1f1b4a67289c",
     },
     {
       title: "Miu",
