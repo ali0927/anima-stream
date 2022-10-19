@@ -1,14 +1,16 @@
 /* eslint-disable */
 
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback, useMemo } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { CometChatMessages } from "../../cometchat-pro-react-ui-kit/CometChatWorkspace/src";
 import LiveStreamHeader from "../livestream-header/LiveStreamHeader";
 import ToolBarMenu from "./ToolBarMenu";
+import PrivateChat from "./PrivateChat";
 import Notification from "./Notification";
 import { AuthContext } from "../../contexts";
 import { CometChat } from "@cometchat-pro/chat";
 import * as firebaseService from "../../services/firebase";
+import Lock from "../../assets/icons/lock.svg";
 import "./LiveStreamDetail.scss";
 
 const PurchasingMenu = [
@@ -87,10 +89,13 @@ const LovenceMenu = [
 
 const LiveStreamDetail = () => {
   const [livestream, setLivestream] = useState(null);
+  const [privateChat, setPrivateChat] = useState(null);
+  const [lastPrivateChat, setLastPrivateChat] = useState(null);
   const { id } = useParams();
   const [activePublic, setAcivePublic] = useState(true);
   const [showPurchasing, setShowPurchasing] = useState(false);
   const [showLovence, setShowLovence] = useState(false);
+  const [showPrivate, setShowPrivate] = useState(false);
   const { cometChat, user } = useContext(AuthContext);
   const [notification, setNotification] = useState(null);
 
@@ -108,10 +113,29 @@ const LiveStreamDetail = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (!notification && livestream.createdBy.id === user.id) getNotificiation()
-    }, 500);
+      if (!notification && livestream.createdBy.id === user.id) getNotificiation();
+    }, 1000);
     return () => clearInterval(interval);
   }, [livestream]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getLastPrivateChat();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [livestream]);
+
+  useEffect(() => {
+    if ((!privateChat && lastPrivateChat) || (lastPrivateChat && lastPrivateChat.chatId !== privateChat.chatId)) {
+      if (livestream.createdBy.id !== user.id && lastPrivateChat.userId === user.id && !notification) {
+        setNotification(`Starting private chat with streamer`);
+      }
+      else if (livestream.createdBy.id === user.id && !notification) {
+        setNotification(`Starting private chat with ${lastPrivateChat.userName}`);
+      }
+    }
+    setPrivateChat(lastPrivateChat);
+  }, [lastPrivateChat]);
 
   const startDirectCall = () => {
     if (cometChat && livestream) {
@@ -205,7 +229,7 @@ const LiveStreamDetail = () => {
     setLivestream(livestream);
   }
 
-  const getNotificiation = async () => {
+  const getNotificiation = useCallback(async () => {
     const livestream = await firebaseService.getSingleDataWithQuery({
       key: "livestreams",
       query: "id",
@@ -227,9 +251,46 @@ const LiveStreamDetail = () => {
         return;
       }
     });
-  };
+  }, []);
 
-  if (!livestream || !cometChat) return <React.Fragment></React.Fragment>;
+  const getPrivateChat = useCallback(async () => {
+    const livestream = await firebaseService.getSingleDataWithQuery({
+      key: "livestreams",
+      query: "id",
+      criteria: id,
+    });
+    let chats = livestream.chats ? livestream.chats: [];
+    chats = chats.filter(chat => chat.start + chat.time > Date.now());
+    chats.sort((a, b) => a.start - b.start);
+    if (chats.length <= 0) {
+      setPrivateChat(null);
+      return;
+    }
+    if (privateChat && privateChat.chatId === chats[0].chatId) return;
+    setPrivateChat(chats[0]);
+
+    if (livestream.createdBy.id !== user.id && chats[0].userId === user.id) {
+      setNotification(`Starting private chat with streamer`);
+    }
+    else if (livestream.createdBy.id === user.id) {
+      setNotification(`Starting private chat with ${chats[0].userName}`);
+    }
+  }, [privateChat]);
+
+  const getLastPrivateChat = async () => {
+    const livestream = await firebaseService.getSingleDataWithQuery({
+      key: "livestreams",
+      query: "id",
+      criteria: id,
+    });
+    let chats = livestream.chats ? livestream.chats: [];
+    chats = chats.filter(chat => chat.start + chat.time > Date.now());
+    chats.sort((a, b) => a.start - b.start);
+    if (chats.length <= 0) setLastPrivateChat(null);
+    else setLastPrivateChat(chats[0]);   
+  }
+
+  if (!livestream || !cometChat) return <></>;
 
   return (
     <div className="livestream">
@@ -296,22 +357,51 @@ const LiveStreamDetail = () => {
             <div className="livestream__tabs">
               <button
                 className={activePublic ? 'active': ''}
+                onClick={() => setAcivePublic(true)}
               >
                 GENERAL CHAT
               </button>
               <button
                 className={activePublic ? '': 'active'}
+                onClick={() => setAcivePublic(false)}
               >
                 CHAT WITH
+                {livestream.createdBy.id === user.id 
+                  ? <span style={{fontSize: "12px", margin: "2px"}}>
+                      {privateChat && ` (${privateChat.userName})`}
+                    </span>
+                  : privateChat && privateChat.userId === user.id
+                    ? <></>
+                    : <img
+                        src={Lock}
+                        className="livestream__lockIcon"
+                        onClick={() => setShowPrivate(!showPrivate)}
+                      />
+                }
               </button>
-
             </div>
-            <div className="livestream__chat">
-              <CometChatMessages chatWithGroup={livestream.id} />
-            </div>
-            {/* <div className="livestream__right">
-              <CometChatMessages chatWithGroup={livestream.id} />
-            </div> */}
+            {activePublic &&
+              <div className="livestream__chat">
+                <CometChatMessages chatWithGroup={livestream.id} />
+              </div>
+            }
+            {!activePublic && 
+              <div className="livestream__chat">
+                {privateChat && livestream && (privateChat.userId === user.id || livestream.createdBy.id === user.id)
+                  ? <CometChatMessages chatWithGroup={privateChat.chatId} />
+                  : <div className="livestream__public__description">
+                      {livestream && livestream.createdBy.id !== user.id && 
+                        `You need to purchase for private chat and wait until streamer is available.`
+                      }
+                    </div>
+                }
+              </div>
+            }
+            <PrivateChat 
+              show={showPrivate}
+              onClose={() => setShowPrivate(false)}
+              livestreamId={livestream.id}
+            />
           </div>
         </div>
       </div>

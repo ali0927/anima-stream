@@ -135,7 +135,9 @@ input {
     cursor: grabbing;
   }
 }
-
+.message__actions {
+  display: none !important;
+}
 
 // fonts
 // Nunito;
