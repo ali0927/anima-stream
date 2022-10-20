@@ -13,7 +13,7 @@ const PrivateChat = ({ show, onClose, livestreamId }) => {
   const { user, setUser, cometChat } = useContext(AuthContext);
 
   const handleBuy = async () => {
-    const amount = 20
+    const amount = 200
     try {
       uiService.showLoading();
       if (user.balance > amount) {
