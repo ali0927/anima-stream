@@ -33,7 +33,6 @@ const Charge = () => {
 
       setAmount(0);
       setUser({...user, balance: user.balance + amount * 10});
-      uiService.alert(`Your balance was charged successfully`);
     } catch (error) {
       uiService.alert(`Failure to charge your balance, please try again`);
     }
