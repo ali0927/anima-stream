@@ -1,7 +1,7 @@
 import React from "react";
 
 /* assets */
-import "../../../assets/backgrounds/background.png";
+import "../../../assets/backgrounds/background_neatis.png";
 import classNames from "classnames";
 import styles from "./layout.module.scss";
 import { Header } from "./header/header";
