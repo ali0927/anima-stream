@@ -105,6 +105,11 @@
         width: auto;
         align-self: center;
       }
+      .video {
+        width: 90%;
+        height: 90%;
+        border-radius: 20px;
+      }
 
       .spacer {
         flex-grow: 0;

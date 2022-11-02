@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -12,32 +13,33 @@ import classNames from "classnames";
 import { Btn } from "../../../common/btn/btn";
 
 /* assets */
-
-import batteryImage from "../../../../../assets/items/battery.png";
+import AniTimeCoin1 from "../../../../../assets/items/anima_timecoin_01.mp4";
+import AniTimeCoin2 from "../../../../../assets/items/anima_timecoin_02.mp4";
+import AniTimeCoin3 from "../../../../../assets/items/anima_timecoin_03.mp4";
 
 const listedItems = [
   {
-    imageUrl: batteryImage,
+    imageUrl: AniTimeCoin1,
     title: "50 seconds",
     price: 5,
   },
   {
-    imageUrl: batteryImage,
+    imageUrl: AniTimeCoin2,
     title: "100 seconds",
     price: 10,
   },
   {
-    imageUrl: batteryImage,
+    imageUrl: AniTimeCoin3,
     title: "200 seconds",
     price: 20,
   },
   {
-    imageUrl: batteryImage,
+    imageUrl: AniTimeCoin1,
     title: "500 seconds",
     price: 50,
   },
   {
-    imageUrl: batteryImage,
+    imageUrl: AniTimeCoin2,
     title: "1000 seconds",
     price: 100,
   },
@@ -128,11 +130,24 @@ export const MarketplaceWidget = () => {
                 <div className={classNames(styles["dot"])} />
               </div>
 
-              <img
+              {/* <img
                 className={classNames(styles["image"])}
                 src={item.imageUrl}
                 alt={item.title}
-              />
+              /> */}
+              <div
+                className={classNames(
+                  "full-width full-height flex justify-center"
+                )}
+              >
+                <video
+                  className={classNames(styles["video"])}
+                  autoPlay={true}
+                  loop={true}
+                >
+                  <source src={item.imageUrl} type="video/mp4" />
+                </video>
+              </div>
 
               <span className={classNames(styles["title"])}>{item.title}</span>
 

@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../contexts";
 import MetaMask from "../../assets/image/metamask.png";
+import Logo from "../../assets/icons/logo.png";
 import "./LiveStreamHeader.scss";
 
 const LiveStreamHeader = ({ livestream }) => {
@@ -17,6 +18,7 @@ const LiveStreamHeader = ({ livestream }) => {
   return (
     <div className="liveStreamHeader">
       <div style={{display: "flex", height: "100%"}}>
+        <img src={Logo} style={{ margin: "20px", width: "36px" }} alt="logo" />
         <div className="liveStreamHeader__tab active">MAIN PAGE</div>
         <div className="liveStreamHeader__tab">MARKETPLACE</div>
       </div>
