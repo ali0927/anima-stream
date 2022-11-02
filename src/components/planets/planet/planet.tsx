@@ -24,7 +24,7 @@ export const Planet = () => {
   const [selectedTab, setSelectedTab] = useState("ABOUT");
 
   return (
-    <Layout>
+    <Layout secondBackground={true}>
       <div
         className={classNames(
           "full-height full-width flex row align-start justify-space-between",

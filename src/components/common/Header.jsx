@@ -56,7 +56,6 @@ const Header = () => {
       const signerAddr = await ethers.utils.verifyMessage(SignMessage, signature);
       setSigner(signer);
       setAddress(address)
-      alert(`Successful Signin by ${signerAddr}`);
 
       return {
         SignMessage,

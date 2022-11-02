@@ -42,7 +42,6 @@ export const LoginModal = ({
       const signerAddr = ethers.utils.verifyMessage(SignMessage, signature);
       setSigner(signer);
       setAddress(address);
-      alert(`Successful Signin by ${signerAddr}`);
       onCloseBtnPress();
       return {
         SignMessage,
