@@ -8,7 +8,7 @@ import { Btn } from "../../common/btn/btn";
 // assets
 
 // room cover images
-import irelImage from "../../../../assets/rooms/irel.png";
+import luinelImage from "../../../../assets/rooms/luinel.jpg";
 import irel2Image from "../../../../assets/rooms/irel2.png";
 import alvinImage from "../../../../assets/rooms/alvin.png";
 import alvin2Image from "../../../../assets/rooms/alvin2.png";
@@ -21,8 +21,8 @@ import lightningIcon from "../../../../assets/icons/lightning.png";
 export const Rooms = () => {
   const [rooms] = useState([
     {
-      title: "Irel",
-      image: irelImage,
+      title: "LUINEL",
+      image: luinelImage,
       premiumAccessIsRequired: false,
       isLive: true,
       id: "5b56256b-3aa9-4d43-912a-21c545b2f6cf",

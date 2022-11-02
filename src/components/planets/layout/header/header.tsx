@@ -5,6 +5,7 @@ import { AuthContext, WalletContext } from "src/contexts";
 
 // assets
 import MetaMask from "../../../../assets/image/metamask.png";
+import Logo from "../../../../assets/icons/logo.png";
 
 export const Header = () => {
   const { user } = useContext(AuthContext);
@@ -12,6 +13,7 @@ export const Header = () => {
   return (
     <div className={classNames(styles["header"])}>
       <div className={classNames("full-height flex row align-center")}>
+        <img src={Logo} style={{ margin: "20px", width: "36px" }} alt="logo" />
         <div className={classNames(styles["tab"], styles["active"])}>
           MAIN PAGE
         </div>

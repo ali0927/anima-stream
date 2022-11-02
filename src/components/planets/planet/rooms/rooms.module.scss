@@ -102,6 +102,7 @@
         .image-wrapper {
           pointer-events: none;
           position: relative;
+          height: calc(100% - 3.5rem);
 
           .image {
             object-fit: contain;
