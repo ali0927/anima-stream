@@ -18,7 +18,7 @@ const LiveStreamHeader = ({ livestream }) => {
   return (
     <div className="liveStreamHeader">
       <div style={{display: "flex", height: "100%"}}>
-        <img src={Logo} style={{ margin: "20px", width: "36px" }} alt="logo" />
+        <img src={Logo} style={{ margin: "20px", width: "36px", height: "32px" }} alt="logo" />
         <div className="liveStreamHeader__tab active">MAIN PAGE</div>
         <div className="liveStreamHeader__tab">MARKETPLACE</div>
       </div>

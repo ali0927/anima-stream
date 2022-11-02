@@ -13,7 +13,11 @@ export const Header = () => {
   return (
     <div className={classNames(styles["header"])}>
       <div className={classNames("full-height flex row align-center")}>
-        <img src={Logo} style={{ margin: "20px", width: "36px" }} alt="logo" />
+        <img
+          src={Logo}
+          style={{ margin: "auto 20px", width: "36px", height: "32px" }}
+          alt="logo"
+        />
         <div className={classNames(styles["tab"], styles["active"])}>
           MAIN PAGE
         </div>

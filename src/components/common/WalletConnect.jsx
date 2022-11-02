@@ -43,7 +43,6 @@ const WalletConnect = ({}) => {
       const signerAddr = await ethers.utils.verifyMessage(SignMessage, signature);
       setSigner(signer);
       setAddress(address);
-      alert(`Successful Signin by ${signerAddr}`);
       history.push("/home");
       return {
         SignMessage,

@@ -8,14 +8,16 @@ import { Header } from "./header/header";
 
 export const Layout = ({
   children,
+  secondBackground,
 }: {
   children: React.ReactNode[] | React.ReactNode;
+  secondBackground?: Boolean;
 }) => {
   return (
     <div
       className={classNames(
         "full-height-norelative full-width-norelative flex column justify-start align-center overflow-hidden",
-        styles.layout
+        secondBackground ? styles.layout2 : styles.layout
       )}
     >
       <Header />
