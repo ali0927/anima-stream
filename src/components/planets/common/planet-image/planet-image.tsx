@@ -5,8 +5,8 @@ import styles from "./planet-image.module.scss";
 // assets
 // planet images
 import R86 from "../../../../assets/planets/r86.png";
-// import Neatis from "../../../../assets/planets/neatis.png";
-import Neatis from "../../../../assets/planets/nexus.gif";
+import Neatis from "../../../../assets/planets/neatis.png";
+// import Neatis from "../../../../assets/planets/nexus.gif";
 import Sataru from "../../../../assets/planets/sataru.png";
 import { Btn } from "../btn/btn";
 
