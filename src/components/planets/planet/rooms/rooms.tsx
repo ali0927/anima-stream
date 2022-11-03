@@ -8,7 +8,7 @@ import { Btn } from "../../common/btn/btn";
 // assets
 
 // room cover images
-import luinelImage from "../../../../assets/rooms/luinel.jpg";
+import luinelImage from "../../../../assets/rooms/luinel.png";
 import irel2Image from "../../../../assets/rooms/irel2.png";
 import alvinImage from "../../../../assets/rooms/alvin.png";
 import alvin2Image from "../../../../assets/rooms/alvin2.png";

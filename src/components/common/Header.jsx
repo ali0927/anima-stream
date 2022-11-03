@@ -53,7 +53,6 @@ const Header = () => {
       const signature = await signer.signMessage(SignMessage);
       const address = await signer.getAddress();
       setAddress(address);
-      const signerAddr = await ethers.utils.verifyMessage(SignMessage, signature);
       setSigner(signer);
       setAddress(address)
 
