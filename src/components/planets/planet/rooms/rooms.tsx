@@ -66,7 +66,7 @@ export const Rooms = () => {
   const { title } = useParams() as { title: string };
   const { push } = useHistory();
   return (
-    <Layout>
+    <Layout secondBackground={true}>
       <div
         className={classNames(
           "full-width full-height flex column justify-start",
