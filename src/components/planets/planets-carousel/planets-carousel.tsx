@@ -14,7 +14,7 @@ export const PlanetsCarousel = () => {
       title: "R86",
     },
     {
-      title: "Neatis",
+      title: "Nexus",
     },
     {
       title: "Sataru",

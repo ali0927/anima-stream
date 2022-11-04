@@ -5,14 +5,14 @@ import styles from "./planet-image.module.scss";
 // assets
 // planet images
 import R86 from "../../../../assets/planets/r86.png";
-import Neatis from "../../../../assets/planets/neatis.png";
-// import Neatis from "../../../../assets/planets/nexus.gif";
+// import Neatis from "../../../../assets/planets/neatis.png";
+import Nexus from "../../../../assets/planets/nexus.gif";
 import Sataru from "../../../../assets/planets/sataru.png";
 import { Btn } from "../btn/btn";
 
 const planetImages = {
   R86,
-  Neatis,
+  Nexus,
   Sataru,
 };
 
@@ -52,7 +52,7 @@ export const PlanetImage = ({
       {showTitle && <span className={classNames(styles.title)}>{title}</span>}
       <div className={classNames(styles["image-wrapper"])}>
         <img
-          className={classNames(styles["image"])}
+          className={classNames(styles["image"], !showTitle && styles.inactive)}
           src={planetImages[title]}
           alt={title}
         />
