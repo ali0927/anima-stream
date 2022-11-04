@@ -25,7 +25,7 @@ export const PlanetCarouselItem = ({
         title={title}
         showTitle={isActive}
         className={classNames(styles["planet-image"])}
-        rotating={isActive}
+        rotating={false}
       />
 
       {/* planet controls overlay */}
