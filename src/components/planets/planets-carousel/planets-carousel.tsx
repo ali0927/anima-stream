@@ -21,6 +21,10 @@ export const PlanetsCarousel = () => {
     },
   ];
 
+  React.useEffect(() => {
+    document.title = "ANIMA | 18+ Metaverse";
+  });
+
   // const [activePlanet, setActivePlanet] = React.useState(planets[1].title);
 
   return (

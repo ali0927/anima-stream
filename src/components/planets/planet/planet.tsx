@@ -25,6 +25,7 @@ export const Planet = () => {
 
   useEffect(() => {
     setSelectedTab("ABOUT");
+    document.title = "Nexus | ANIMA | 18+ Metaverse";
   }, []);
 
   return (

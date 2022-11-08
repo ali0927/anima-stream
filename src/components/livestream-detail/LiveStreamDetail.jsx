@@ -102,6 +102,10 @@ const LiveStreamDetail = () => {
   const history = useHistory();
 
   useEffect(() => {
+    if (livestream) document.title = `${livestream.name} | ANIMA | 18+ Metaverse`;
+  }, [livestream]);
+
+  useEffect(() => {
     getLivestream(id);
   }, [id]);
 

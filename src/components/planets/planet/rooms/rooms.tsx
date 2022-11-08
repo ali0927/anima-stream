@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./rooms.module.scss";
 import { Layout } from "../../layout/layout";
 import classNames from "classnames";
@@ -59,6 +59,10 @@ export const Rooms = () => {
       isLive: true,
     },
   ]);
+
+  useEffect(() => {
+    document.title = "Rooms | ANIMA | 18+ Metaverse";
+  });
 
   const [accessRestrictedPopUpOnRoomWidget, setAccessRestrictedPopUpOnRoom] =
     useState(null);
