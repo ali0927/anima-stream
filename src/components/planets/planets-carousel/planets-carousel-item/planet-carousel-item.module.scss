@@ -1,27 +1,33 @@
 .planet {
-  width: 55.5rem;
-  height: 55.5rem;
+  width: 70.5rem;
+  height: auto;
   position: relative;
 
   .controls-overlay {
     position: absolute;
-    top: 45%;
+    top: 37%;
     height: 45%;
     left: 0;
     z-index: 1;
+
+    .arrows {
+      position: relative;
+      top: 10em;
+    }
+
     .btn {
       border-radius: 6.25rem;
 
       &.arrow {
         border-radius: 50%;
-        height: 6rem;
-        width: 6rem;
+        height: 3rem;
+        width: 3rem;
         padding: 0;
         margin: 0;
         background: linear-gradient(103.62deg, rgba(255, 255, 255, 0.24) 4.66%, rgba(255, 255, 255, 0) 107.65%);
         filter: drop-shadow(0px 0px 4px rgba(107, 232, 251, 0.1));
         backdrop-filter: blur(12.5px);
-
+        position: relative;
       }
     }
 
@@ -47,7 +53,7 @@
       }
 
       will-change: transform;
-      transform:  scale(1);
+      transform: scale(1);
       transition: transform 30s;
     }
 
@@ -55,9 +61,9 @@
     transform: scale(.9);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     will-change: opacity, transform;
+    margin: 0 auto;
+    right: 0;
   }
-
-
 
   &:hover {
 
@@ -72,16 +78,20 @@
 
   }
 
-
   &.inactive {
     position: relative;
-    top: 25rem;
+    top: 30rem;
+    width: 70.5rem;
+    height: 70.5rem;
+
+    img {
+      width: 10.625rem;
+      height: 10.625rem;
+    }
 
     .controls-overlay {
       display: none;
     }
 
   }
-
-
 }

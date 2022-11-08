@@ -27,39 +27,39 @@ export const Rooms = () => {
       isLive: true,
       id: "5b56256b-3aa9-4d43-912a-21c545b2f6cf",
     },
-    {
-      title: "Alvin",
-      image: alvinImage,
-      premiumAccessIsRequired: false,
-      isLive: true,
-      id: "3f5b706c-d810-4182-8164-1f1b4a67289c",
-    },
-    {
-      title: "Miu",
-      image: miuImage,
-      premiumAccessIsRequired: true,
-      isLive: true,
-    },
-    {
-      title: "Luniel",
-      image: lunielImage,
-      premiumAccessIsRequired: true,
-      isLive: true,
-    },
-    {
-      title: "Irel2",
-      image: irel2Image,
-      premiumAccessIsRequired: true,
-      isLive: true,
-    },
-    {
-      title: "Alvin2",
-      image: alvin2Image,
-      premiumAccessIsRequired: true,
-      isLive: true,
-    },
+    // {
+    //   title: "Alvin",
+    //   image: alvinImage,
+    //   premiumAccessIsRequired: false,
+    //   isLive: true,
+    //   id: "3f5b706c-d810-4182-8164-1f1b4a67289c",
+    // },
+    // {
+    //   title: "Miu",
+    //   image: miuImage,
+    //   premiumAccessIsRequired: true,
+    //   isLive: true,
+    // },
+    // {
+    //   title: "Luniel",
+    //   image: lunielImage,
+    //   premiumAccessIsRequired: true,
+    //   isLive: true,
+    // },
+    // {
+    //   title: "Irel2",
+    //   image: irel2Image,
+    //   premiumAccessIsRequired: true,
+    //   isLive: true,
+    // },
+    // {
+    //   title: "Alvin2",
+    //   image: alvin2Image,
+    //   premiumAccessIsRequired: true,
+    //   isLive: true,
+    // },
   ]);
-
+  console.log("rooms", rooms);
   const [accessRestrictedPopUpOnRoomWidget, setAccessRestrictedPopUpOnRoom] =
     useState(null);
 

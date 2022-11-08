@@ -25,7 +25,8 @@ export const PlanetCarouselItem = ({
         title={title}
         showTitle={isActive}
         className={classNames(styles["planet-image"])}
-        rotating={isActive}
+        rotating={false}
+        activeImage={isActive}
       />
 
       {/* planet controls overlay */}
@@ -37,7 +38,8 @@ export const PlanetCarouselItem = ({
       >
         <div
           className={classNames(
-            "flex row justify-space-between align-center full-width"
+            "flex row justify-space-between align-center full-width",
+            styles.arrows
           )}
         >
           <Btn

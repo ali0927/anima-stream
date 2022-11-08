@@ -11,10 +11,10 @@ import { Layout } from "../layout/layout";
 export const PlanetsCarousel = () => {
   const planets = [
     {
-      title: "R86",
+      title: "Anima",
     },
     {
-      title: "Neatis",
+      title: "Nexus",
     },
     {
       title: "Sataru",

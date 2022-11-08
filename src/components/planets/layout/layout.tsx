@@ -5,6 +5,7 @@ import "../../../assets/backgrounds/background_neatis.png";
 import classNames from "classnames";
 import styles from "./layout.module.scss";
 import { Header } from "./header/header";
+import { AdultsPopUp } from "../../popUp/popUps/AdultsPopUp";
 
 export const Layout = ({
   children,
@@ -29,6 +30,7 @@ export const Layout = ({
       >
         {children}
       </div>
+      <AdultsPopUp />
     </div>
   );
 };

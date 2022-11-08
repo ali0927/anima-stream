@@ -4,14 +4,14 @@ import styles from "./planet-image.module.scss";
 
 // assets
 // planet images
-import R86 from "../../../../assets/planets/r86.png";
-import Neatis from "../../../../assets/planets/neatis.png";
+import Anima from "../../../../assets/planets/anima.png";
+import Nexus from "../../../../assets/planets/nexus.png";
 import Sataru from "../../../../assets/planets/sataru.png";
 import { Btn } from "../btn/btn";
 
 const planetImages = {
-  R86,
-  Neatis,
+  Anima,
+  Nexus,
   Sataru,
 };
 
@@ -29,6 +29,7 @@ export const PlanetImage = ({
   showTitle = false,
   showOrbits = false,
   orbitalButtons,
+  activeImage,
 }: {
   title: string;
   showTitle?: boolean;
@@ -36,6 +37,7 @@ export const PlanetImage = ({
   rotating?: boolean;
   showOrbits?: boolean;
   orbitalButtons?: OrbitButton[];
+  activeImage?: boolean;
 }) => {
   return (
     <div
@@ -51,7 +53,9 @@ export const PlanetImage = ({
       {showTitle && <span className={classNames(styles.title)}>{title}</span>}
       <div className={classNames(styles["image-wrapper"])}>
         <img
-          className={classNames(styles["image"])}
+          className={classNames(styles["image"], {
+            [styles.active]: activeImage,
+          })}
           src={planetImages[title]}
           alt={title}
         />

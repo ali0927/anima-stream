@@ -80,7 +80,6 @@ export const Planet = () => {
           <PlanetImage
             title={title}
             showTitle={true}
-            rotating={true}
             showOrbits={true}
             orbitalButtons={[
               {

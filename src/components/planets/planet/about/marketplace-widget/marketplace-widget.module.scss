@@ -1,5 +1,5 @@
 .marketplace-widget {
-  height: 19.875rem;
+  height: auto;
   padding: 1.25rem;
   border-radius: 1.25rem;
   background: rgba(70, 52, 85, 0.7);
@@ -28,21 +28,56 @@
       text-transform: none;
     }
   }
+
+  .shadowsCarousel {
+    position: relative;
+    width: 100%;
+
+    &.left {
+      &::before {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &.right {
+      &::after {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &.shadow {
+      &::before {
+        background-image: linear-gradient(90deg, rgba(55,43,68, 1), rgba(55,43,68, 0.1) 100%);
+        content: '';
+        width: 30px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        z-index: 1;
+      }
+
+      &::after {
+        background-image: linear-gradient(90deg, rgba(55,43,68, 0.1), rgba(255,255,255, 0.7) 100%);
+        top: 0;
+        content: '';
+        width: 30px;
+        right: 0;
+        position: absolute;
+        height: 100%;
+        opacity: .5;
+      }
+    }
+
+  }
+
   .carousel {
     height: 14.0625rem;
     position: relative;
-
-    .overlay {
-      pointer-events: none;
-      position: absolute;
-      left: 0;
-      top: 0;
-      background: transparent;
-      background: linear-gradient(90deg,transparent 0%, transparent 90%, rgba(70,52,85,0.6) 95%, rgba(70,52,85,1) 100%);
-      background: -webkit-linear-gradient(90deg,transparent 0%, transparent 90%, rgba(70,52,85,0.6) 95%, rgba(70,52,85,1) 100%);
-      background: -moz-linear-gradient(90deg,transparent 0%, transparent 90%, rgba(70,52,85,0.6) 95%, rgba(70,52,85,1) 100%);
-    }
-
+    overflow-x: auto;
+    gap: 1rem;
 
     .carousel-item {
       flex-grow: 0;
@@ -54,12 +89,6 @@
       cursor: pointer;
       padding: 1.25rem 1rem 1rem;
       position: relative;
-
-
-
-      &:not(:first-child) {
-        margin-left: 1rem;
-      }
 
       .carousel-item-overlay {
         pointer-events: none;
