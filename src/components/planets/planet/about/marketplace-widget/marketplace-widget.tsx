@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { ethers } from "ethers";
 import styles from "./marketplace-widget.module.scss";
 import { AuthContext, WalletContext } from "src/contexts";
@@ -46,8 +46,11 @@ const listedItems = [
 ];
 
 export const MarketplaceWidget = () => {
+  const [scroll, setScroll] = useState({ isLeft: true, isRight: false });
   const { user, setUser } = useContext(AuthContext);
   const { signer } = useContext(WalletContext);
+
+  const descRef = useRef<HTMLDivElement>(null);
 
   const purchase = async (amount) => {
     if (!signer) {
@@ -84,6 +87,17 @@ export const MarketplaceWidget = () => {
     uiService.hideLoading();
   };
 
+  const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    const { scrollWidth, scrollLeft, clientWidth } = e.currentTarget;
+    if (scrollLeft === 0) {
+      setScroll({ ...scroll, isLeft: true });
+    } else if (scrollLeft + clientWidth === scrollWidth) {
+      setScroll({ ...scroll, isRight: true });
+    } else {
+      setScroll({ isLeft: false, isRight: false });
+    }
+  };
+
   return (
     <div
       className={classNames(
@@ -102,67 +116,76 @@ export const MarketplaceWidget = () => {
           i
         </Btn>
       </div>
+
       <div
-        className={classNames(
-          "full-width flex row justify-start overflow-hidden",
-          styles["carousel"]
-        )}
+        ref={descRef}
+        className={classNames(styles.shadowsCarousel, {
+          [styles.shadow]: descRef.current?.clientHeight === 216,
+          [styles.left]: scroll.isLeft,
+          [styles.right]: scroll.isRight,
+        })}
       >
-        {listedItems.map((item, index) => {
-          return (
-            <div
-              className={classNames(
-                "full-height flex column align-start justify-space-between",
-                styles["carousel-item"]
-              )}
-              key={item.title + index}
-              onClick={() => purchase(item.price)}
-            >
+        <div
+          className={classNames(
+            "full-width flex row justify-start",
+            styles["carousel"]
+          )}
+          onScroll={handleScroll}
+        >
+          {listedItems.map((item, index) => {
+            return (
               <div
                 className={classNames(
-                  "full-height full-width",
-                  styles["carousel-item-overlay"]
+                  "full-height flex column align-start justify-space-between",
+                  styles["carousel-item"]
                 )}
+                key={item.title + index}
+                onClick={() => purchase(item.price)}
               >
-                <div className={classNames(styles["dot"])} />
-                <div className={classNames(styles["dot"])} />
-                <div className={classNames(styles["dot"])} />
-                <div className={classNames(styles["dot"])} />
-              </div>
+                <div
+                  className={classNames(
+                    "full-height full-width",
+                    styles["carousel-item-overlay"]
+                  )}
+                >
+                  <div className={classNames(styles["dot"])} />
+                  <div className={classNames(styles["dot"])} />
+                  <div className={classNames(styles["dot"])} />
+                  <div className={classNames(styles["dot"])} />
+                </div>
 
-              {/* <img
+                {/* <img
                 className={classNames(styles["image"])}
                 src={item.imageUrl}
                 alt={item.title}
               /> */}
-              <div
-                className={classNames(
-                  "full-width full-height flex justify-center"
-                )}
-              >
-                <video
-                  className={classNames(styles["video"])}
-                  autoPlay={true}
-                  loop={true}
+                <div
+                  className={classNames(
+                    "full-width full-height flex justify-center"
+                  )}
                 >
-                  <source src={item.imageUrl} type="video/mp4" />
-                </video>
+                  <video
+                    className={classNames(styles["video"])}
+                    autoPlay={true}
+                    loop={true}
+                  >
+                    <source src={item.imageUrl} type="video/mp4" />
+                  </video>
+                </div>
+
+                <span className={classNames(styles["title"])}>
+                  {item.title}
+                </span>
+
+                <span className={classNames("full-width", styles["spacer"])} />
+
+                <span className={classNames(styles["price"])}>
+                  {item.price} USDT
+                </span>
               </div>
-
-              <span className={classNames(styles["title"])}>{item.title}</span>
-
-              <span className={classNames("full-width", styles["spacer"])} />
-
-              <span className={classNames(styles["price"])}>
-                {item.price} USDT
-              </span>
-            </div>
-          );
-        })}
-
-        <div
-          className={classNames("full-height full-width", styles["overlay"])}
-        />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

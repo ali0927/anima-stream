@@ -5,7 +5,9 @@ import { AuthContext, WalletContext } from "src/contexts";
 
 // assets
 import MetaMask from "../../../../assets/image/metamask.png";
-import Logo from "../../../../assets/icons/logo.png";
+import { ReactComponent as Logo } from "../../../../assets/icons/logo.svg";
+import { SvgIcon } from "../../../svgIcon/SvgIcon";
+// import LogoIcon from "../../../svgIcon/logoIcon/logoIcon";
 
 export const Header = () => {
   const { user } = useContext(AuthContext);
@@ -13,10 +15,9 @@ export const Header = () => {
   return (
     <div className={classNames(styles["header"])}>
       <div className={classNames("full-height flex row align-center")}>
-        <img
-          src={Logo}
-          style={{ margin: "auto 20px", width: "36px", height: "32px" }}
-          alt="logo"
+        <SvgIcon
+          Icon={Logo}
+          // style={{ margin: "auto 20px", width: "36px", height: "32px" }}
         />
         <div className={classNames(styles["tab"], styles["active"])}>
           MAIN PAGE

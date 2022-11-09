@@ -9,11 +9,11 @@ import { Btn } from "../../common/btn/btn";
 
 // room cover images
 import luinelImage from "../../../../assets/rooms/luinel.png";
-import irel2Image from "../../../../assets/rooms/irel2.png";
-import alvinImage from "../../../../assets/rooms/alvin.png";
-import alvin2Image from "../../../../assets/rooms/alvin2.png";
-import lunielImage from "../../../../assets/rooms/luniel.png";
-import miuImage from "../../../../assets/rooms/miu.png";
+// import irel2Image from "../../../../assets/rooms/irel2.png";
+// import alvinImage from "../../../../assets/rooms/alvin.png";
+// import alvin2Image from "../../../../assets/rooms/alvin2.png";
+// import lunielImage from "../../../../assets/rooms/luniel.png";
+// import miuImage from "../../../../assets/rooms/miu.png";
 
 // icons
 import lightningIcon from "../../../../assets/icons/lightning.png";
@@ -27,37 +27,37 @@ export const Rooms = () => {
       isLive: true,
       id: "5b56256b-3aa9-4d43-912a-21c545b2f6cf",
     },
-    {
-      title: "Alvin",
-      image: alvinImage,
-      premiumAccessIsRequired: false,
-      isLive: true,
-      id: "3f5b706c-d810-4182-8164-1f1b4a67289c",
-    },
-    {
-      title: "Miu",
-      image: miuImage,
-      premiumAccessIsRequired: true,
-      isLive: true,
-    },
-    {
-      title: "Luniel",
-      image: lunielImage,
-      premiumAccessIsRequired: true,
-      isLive: true,
-    },
-    {
-      title: "Irel2",
-      image: irel2Image,
-      premiumAccessIsRequired: true,
-      isLive: true,
-    },
-    {
-      title: "Alvin2",
-      image: alvin2Image,
-      premiumAccessIsRequired: true,
-      isLive: true,
-    },
+    // {
+    //   title: "Alvin",
+    //   image: alvinImage,
+    //   premiumAccessIsRequired: false,
+    //   isLive: true,
+    //   id: "3f5b706c-d810-4182-8164-1f1b4a67289c",
+    // },
+    // {
+    //   title: "Miu",
+    //   image: miuImage,
+    //   premiumAccessIsRequired: true,
+    //   isLive: true,
+    // },
+    // {
+    //   title: "Luniel",
+    //   image: lunielImage,
+    //   premiumAccessIsRequired: true,
+    //   isLive: true,
+    // },
+    // {
+    //   title: "Irel2",
+    //   image: irel2Image,
+    //   premiumAccessIsRequired: true,
+    //   isLive: true,
+    // },
+    // {
+    //   title: "Alvin2",
+    //   image: alvin2Image,
+    //   premiumAccessIsRequired: true,
+    //   isLive: true,
+    // },
   ]);
 
   useEffect(() => {

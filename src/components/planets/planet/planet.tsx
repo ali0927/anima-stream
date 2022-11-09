@@ -9,8 +9,8 @@ import { PlanetImage } from "../common/planet-image/planet-image";
 import styles from "./planet.module.scss";
 
 /* assets */
-// import personIcon from "../../../assets/icons/person.svg";
-// import planetIcon from "../../../assets/icons/planet.svg";
+import personIcon from "../../../assets/icons/person.svg";
+import planetIcon from "../../../assets/icons/planet.svg";
 import { Characters } from "./characters/characters";
 import { LoginModal } from "../common/login-modal/login-modal";
 import { WalletContext } from "src/contexts";
@@ -85,22 +85,22 @@ export const Planet = () => {
           <PlanetImage
             title={title}
             showTitle={true}
+            orbitalButtons={[
+              {
+                text: "about",
+                iconSrc: planetIcon,
+                onClick: () => setSelectedTab("ABOUT"),
+                disabled: selectedTab === "ABOUT",
+              },
+              {
+                text: "characters",
+                iconSrc: personIcon,
+                onClick: () => setSelectedTab("CHARACTERS"),
+                disabled: selectedTab === "CHARACTERS",
+              },
+            ]}
             rotating={false}
             showOrbits={false}
-            // orbitalButtons={[
-            //   {
-            //     text: "about",
-            //     iconSrc: planetIcon,
-            //     onClick: () => setSelectedTab("ABOUT"),
-            //     disabled: selectedTab === "ABOUT",
-            //   },
-            //   {
-            //     text: "characters",
-            //     iconSrc: personIcon,
-            //     onClick: () => setSelectedTab("CHARACTERS"),
-            //     disabled: selectedTab === "CHARACTERS",
-            //   },
-            // ]}
           />
         </div>
       </div>
