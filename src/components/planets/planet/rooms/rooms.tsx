@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./rooms.module.scss";
 import { Layout } from "../../layout/layout";
 import classNames from "classnames";
@@ -8,7 +8,7 @@ import { Btn } from "../../common/btn/btn";
 // assets
 
 // room cover images
-import luinelImage from "../../../../assets/rooms/luinel.jpg";
+import luinelImage from "../../../../assets/rooms/luinel.png";
 import irel2Image from "../../../../assets/rooms/irel2.png";
 import alvinImage from "../../../../assets/rooms/alvin.png";
 import alvin2Image from "../../../../assets/rooms/alvin2.png";
@@ -59,14 +59,18 @@ export const Rooms = () => {
     //   isLive: true,
     // },
   ]);
-  console.log("rooms", rooms);
+
+  useEffect(() => {
+    document.title = "Rooms | ANIMA | 18+ Metaverse";
+  });
+
   const [accessRestrictedPopUpOnRoomWidget, setAccessRestrictedPopUpOnRoom] =
     useState(null);
 
   const { title } = useParams() as { title: string };
   const { push } = useHistory();
   return (
-    <Layout>
+    <Layout secondBackground={true}>
       <div
         className={classNames(
           "full-width full-height flex column justify-start",

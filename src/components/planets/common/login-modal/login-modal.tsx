@@ -39,7 +39,6 @@ export const LoginModal = ({
       const signer = provider.getSigner();
       const signature = await signer.signMessage(SignMessage);
       const address = await signer.getAddress();
-      const signerAddr = ethers.utils.verifyMessage(SignMessage, signature);
       setSigner(signer);
       setAddress(address);
       onCloseBtnPress();

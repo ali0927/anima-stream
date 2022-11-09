@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import classNames from "classnames";
 import { Layout } from "../layout/layout";
@@ -22,6 +22,11 @@ export const Planet = () => {
   const { signer } = useContext(WalletContext);
 
   const [selectedTab, setSelectedTab] = useState("ABOUT");
+
+  useEffect(() => {
+    setSelectedTab("ABOUT");
+    document.title = "Nexus | ANIMA | 18+ Metaverse";
+  }, []);
 
   return (
     <Layout secondBackground={true}>
@@ -80,7 +85,6 @@ export const Planet = () => {
           <PlanetImage
             title={title}
             showTitle={true}
-            showOrbits={true}
             orbitalButtons={[
               {
                 text: "about",
@@ -95,6 +99,8 @@ export const Planet = () => {
                 disabled: selectedTab === "CHARACTERS",
               },
             ]}
+            rotating={false}
+            showOrbits={false}
           />
         </div>
       </div>

@@ -40,7 +40,6 @@ const WalletConnect = ({}) => {
       const signer = provider.getSigner();
       const signature = await signer.signMessage(SignMessage);
       const address = await signer.getAddress();
-      const signerAddr = await ethers.utils.verifyMessage(SignMessage, signature);
       setSigner(signer);
       setAddress(address);
       history.push("/home");
