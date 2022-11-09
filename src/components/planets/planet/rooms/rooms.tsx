@@ -9,11 +9,11 @@ import { Btn } from "../../common/btn/btn";
 
 // room cover images
 import luinelImage from "../../../../assets/rooms/luinel.png";
-import irel2Image from "../../../../assets/rooms/irel2.png";
-import alvinImage from "../../../../assets/rooms/alvin.png";
-import alvin2Image from "../../../../assets/rooms/alvin2.png";
-import lunielImage from "../../../../assets/rooms/luniel.png";
-import miuImage from "../../../../assets/rooms/miu.png";
+// import irel2Image from "../../../../assets/rooms/irel2.png";
+// import alvinImage from "../../../../assets/rooms/alvin.png";
+// import alvin2Image from "../../../../assets/rooms/alvin2.png";
+// import lunielImage from "../../../../assets/rooms/luniel.png";
+// import miuImage from "../../../../assets/rooms/miu.png";
 
 // icons
 import lightningIcon from "../../../../assets/icons/lightning.png";
