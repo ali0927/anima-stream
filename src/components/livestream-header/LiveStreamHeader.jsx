@@ -18,13 +18,8 @@ const LiveStreamHeader = ({ livestream }) => {
 
   return (
     <div className="liveStreamHeader">
-<<<<<<< HEAD
       <div style={{ display: "flex", height: "100%" }}>
         <SvgIcon Icon={Logo} />
-=======
-      <div style={{display: "flex", height: "100%"}}>
-        <img src={Logo} style={{ margin: "20px", width: "30px", height: "25px" }} alt="logo" />
->>>>>>> main
         <div className="liveStreamHeader__tab active">MAIN PAGE</div>
         <div className="liveStreamHeader__tab">MARKETPLACE</div>
       </div>
