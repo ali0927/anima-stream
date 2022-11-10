@@ -1,10 +1,12 @@
 import { PopUp } from "../PopUp";
 import styles from "./PopUps.module.scss";
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import cn from "classnames";
 
 export const AdultsPopUp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { push } = useHistory();
 
   useEffect(() => {
     if (
@@ -18,7 +20,10 @@ export const AdultsPopUp = () => {
   const handleClick = (isAdult: boolean) => {
     setIsModalOpen(false);
     if (isAdult) window.sessionStorage.setItem("isAdult", JSON.stringify(true));
-    else window.sessionStorage.setItem("isAdult", JSON.stringify(false));
+    else {
+      window.sessionStorage.setItem("isAdult", JSON.stringify(false));
+      push("/planets");
+    }
   };
 
   return (
