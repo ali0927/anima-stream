@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styles from "./header.module.scss";
 import classNames from "classnames";
 import { AuthContext, WalletContext } from "src/contexts";
+import { useHistory } from "react-router-dom";
 
 // assets
 import MetaMask from "../../../../assets/image/metamask.png";
@@ -12,6 +13,8 @@ import { SvgIcon } from "../../../svgIcon/SvgIcon";
 export const Header = () => {
   const { user } = useContext(AuthContext);
   const { signer } = useContext(WalletContext);
+  const { push } = useHistory();
+
   return (
     <div className={classNames(styles["header"])}>
       <div className={classNames("full-height flex row align-center")}>
@@ -19,7 +22,10 @@ export const Header = () => {
           Icon={Logo}
           // style={{ margin: "auto 20px", width: "36px", height: "32px" }}
         />
-        <div className={classNames(styles["tab"], styles["active"])}>
+        <div
+          className={classNames(styles["tab"], styles["active"])}
+          onClick={() => push("/planets")}
+        >
           MAIN PAGE
         </div>
         <div className={classNames(styles["tab"])}>MARKETPLACE</div>

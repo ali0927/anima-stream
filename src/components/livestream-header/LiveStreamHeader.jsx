@@ -9,18 +9,20 @@ import "./LiveStreamHeader.scss";
 import { SvgIcon } from "../svgIcon/SvgIcon";
 
 const LiveStreamHeader = ({ livestream }) => {
-  const history = useHistory();
+  const { push } = useHistory();
   const { user } = useContext(AuthContext);
 
   const stopLivestream = () => {
-    history.push("/home");
+    push("/home");
   };
 
   return (
     <div className="liveStreamHeader">
       <div style={{ display: "flex", height: "100%" }}>
         <SvgIcon Icon={Logo} />
-        <div className="liveStreamHeader__tab active">MAIN PAGE</div>
+        <div className="liveStreamHeader__tab active" onClick={() => push("/planets")}>
+          MAIN PAGE
+        </div>
         <div className="liveStreamHeader__tab">MARKETPLACE</div>
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
