@@ -25,7 +25,7 @@ export const Rooms = () => {
       image: luinelImage,
       premiumAccessIsRequired: false,
       isLive: true,
-      id: "5b56256b-3aa9-4d43-912a-21c545b2f6cf",
+      id: "587644eb-4398-46ef-bc48-b661437ae0f9",
     },
     // {
     //   title: "Alvin",
